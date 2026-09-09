@@ -1,3 +1,5 @@
+[![tests](https://github.com/hemang7/hands/actions/workflows/test.yml/badge.svg)](https://github.com/hemang7/hands/actions/workflows/test.yml)
+
 # hands
 
 A computer-use automation system for back-office apps that have no API.
