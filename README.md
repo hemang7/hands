@@ -17,6 +17,73 @@ goal ──▶ discovery (LLM) ──▶ capability.json ──▶ replay (no LL
                                     └── learn-overrides ◀┘ (drift + what the operator did on another tenant)
 ```
 
+<details>
+<summary>Sample CLI output (offline demo)</summary>
+
+**1 — Discovery: LLM drives the UI, capability recorded**
+```
+[000] discovery.start    {"goal":"Look up member {memberId}...","model":"gpt-4.1","maxSteps":25}
+[001] observe            {"step":1,"url":"http://localhost:4010/t/alpha/login","elements":8}
+[002] decide             {"step":1,"model":"gpt-4.1-2025-04-14","call":{"name":"type","args":{"ref":0,"secretRef":"username"}}}
+[004] act                {"step":1,"action":{"kind":"type","ref":0,"text":"[secret]"},"risk":"safe"}
+...
+[026] decide             {"step":7,"call":{"name":"extract","args":{"ref":28,"name":"share_savings_balance","type":"money"}}}
+[027] extract            {"step":7,"name":"share_savings_balance","value":"$4,812.33"}
+[030] discovery.success  {"steps":8,"summary":"Located and read the current share savings balance."}
+
+DISCOVERY SUCCEEDED in 8 steps -> capabilities/lookup_member_balance.v1.json
+```
+
+**2 — Replay: deterministic, no model, typed outputs**
+```
+[000] replay.start       {"capability":"lookup_member_balance","version":1,"inputs":{"memberId":"10003"}}
+[002] step.ok            {"step":"s0_navigate","kind":"navigate","attempts":1}
+[004] step.ok            {"step":"s1_type","kind":"type","strategy":"anchor","attempts":1}
+...
+[015] extract            {"step":"s7_extract","output":"share_savings_balance","raw":"$15,987.12","parsed":15987.12}
+[017] replay.success     {"outputs":{"share_savings_balance":15987.12},"drift":0,"recoveries":0,"interventions":0}
+
+REPLAY SUCCESS  lookup_member_balance v1 (draft) on tenant alpha  4.3s
+outputs: {"share_savings_balance":15987.12}
+```
+
+**3 — Business outcome: RECORD_NOT_FOUND is an answer, not a failure (exit 0)**
+```
+[000] replay.start       {"capability":"lookup_member_balance","inputs":{"memberId":"99999"}}
+...
+[014] condition          {"step":"s6_click","code":"RECORD_NOT_FOUND","kind":"business"}
+[015] replay.outcome     {"code":"RECORD_NOT_FOUND","message":"No record found for member •••99."}
+
+REPLAY OUTCOME  RECORD_NOT_FOUND
+message: No record found for member •••99.
+```
+
+**4 — Recoverable condition: session expiry mid-flow, re-auth and restart**
+```
+[009] condition          {"step":"s4_click","code":"SESSION_EXPIRED","kind":"recoverable"}
+[010] recovery           {"step":"s4_click","code":"SESSION_EXPIRED","action":"reauth+restart"}
+[012] step.ok            {"step":"s0_navigate","kind":"navigate","attempts":1,"note":"rerun after re-auth"}
+...
+[025] replay.success     {"outputs":{"share_savings_balance":4812.33},"recoveries":1}
+
+REPLAY SUCCESS  lookup_member_balance v1 (draft) on tenant alpha  7.1s  [1 recovery]
+```
+
+**5 — Escalation: operator reviews and aborts (exit 3)**
+```
+[000] replay.start       {"capability":"lookup_member_balance","tenant":"beta","version":1}
+...
+[016] drift              {"stepId":"s4_click","primary":"role","used":"css (fallback #2)"}
+[017] resolve.failed     {"step":"s4_click","target":"the 'Member Inquiry' link"}
+      → intervention raised; scripted operator reviews
+[018] intervention.resolved {"stepId":"s4_click","action":"abort","note":"Operator reviewed and aborted."}
+
+REPLAY ESCALATED  lookup_member_balance v1 (draft) on tenant beta
+cause: TARGET_NOT_FOUND at s4_click
+```
+
+</details>
+
 ## What is in the box
 
 | Path | What |
