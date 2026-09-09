@@ -1,0 +1,40 @@
+STEP 7/30
+LAST ACTION RESULT: ok
+URL: http://localhost:4010/t/alpha/console
+TITLE: Hoosier Federal Credit Union - Teller Console
+FRAMES: top -> http://localhost:4010/t/alpha/console | banner -> http://localhost:4010/t/alpha/frame/banner | menu -> http://localhost:4010/t/alpha/frame/menu | main -> http://localhost:4010/t/alpha/members/•••02
+ELEMENTS:
+  [0] link "Sign Off" frame=banner label="Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1"
+  [1] cell "Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1" frame=banner
+  [2] text "Hoosier Federal Credit Union" frame=banner
+  [3] text "LegacyCore Teller Console v7.2.1" frame=banner
+  [4] link "Home" frame=menu label="MAIN MENU"
+  [5] link "Member Inquiry" frame=menu
+  [6] link "Transactions" frame=menu
+  [7] link "Reports" frame=menu
+  [8] link "Administration" frame=menu
+  [9] cell "MAIN MENU" frame=menu
+  [10] button "Open Sub-Account" frame=main
+  [11] button "New Inquiry" frame=main
+  [12] cell "MEMBER DETAIL" frame=main
+  [13] cell "Member Number" frame=main label="MEMBER DETAIL" column="MEMBER DETAIL" row=["•••02"]
+  [14] cell "•••02" frame=main label="Member Number"
+  [15] cell "Name" frame=main label="Member Number" column="MEMBER DETAIL" row=["OKAFOR, DANIEL"]
+  [16] cell "OKAFOR, DANIEL" frame=main label="Name"
+  [17] cell "Member Since" frame=main label="Name" column="MEMBER DETAIL" row=["11/02/2019"]
+  [18] cell "11/02/2019" frame=main label="Member Since"
+  [19] cell "Status" frame=main label="Member Since" column="MEMBER DETAIL" row=["Active"]
+  [20] cell "Active" frame=main label="Status"
+  [21] cell "Suffix" frame=main
+  [22] cell "Type" frame=main label="Suffix"
+  [23] cell "Description" frame=main label="Type"
+  [24] cell "Current Balance" frame=main label="Description"
+  [25] cell "S01" frame=main label="Suffix" column="Suffix" row=["Share Savings","PRIMARY SAVINGS","$250.00"]
+  [26] cell "Share Savings" frame=main label="S01" column="Type" row=["S01","PRIMARY SAVINGS","$250.00"]
+  [27] cell "PRIMARY SAVINGS" frame=main label="Share Savings" column="Description" row=["S01","Share Savings","$250.00"]
+  [28] cell "$250.00" frame=main label="PRIMARY SAVINGS" column="Current Balance" row=["S01","Share Savings","PRIMARY SAVINGS"]
+  [29] text "LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured" frame=main
+VISIBLE TEXT (truncated):
+  [frame banner] Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1 Operator: T. SMITH (TELLER) | Branch 004 | Sign Off
+  [frame menu] MAIN MENU Home Member Inquiry Transactions Reports Administration
+  [frame main] MEMBER DETAIL Member Number •••02 Name OKAFOR, DANIEL Member Since 11/02/2019 Status Active Suffix Type Description Current Balance S01 Share Savings PRIMARY SAVINGS $250.00 LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured

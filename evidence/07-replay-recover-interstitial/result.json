@@ -1,0 +1,101 @@
+{
+  "runId": "07-replay-recover-interstitial",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••02"
+  },
+  "startedAt": "2026-09-08T21:19:58.404Z",
+  "durationMs": 4490,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 561
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 459,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 450,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 599,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "recovered",
+      "attempts": 2,
+      "durationMs": 917,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 452,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 607,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 310,
+      "strategyUsed": "grid",
+      "fingerprintScore": 0.8999999999999999
+    }
+  ],
+  "drift": [],
+  "recoveries": [
+    {
+      "stepId": "s4_click",
+      "code": "SYSTEM_NOTICE",
+      "action": "clicked the \"Acknowledge\" button on the system notice",
+      "succeeded": true
+    }
+  ],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/07-replay-recover-interstitial",
+  "status": "success",
+  "outputs": {
+    "share_savings_balance": 250
+  }
+}

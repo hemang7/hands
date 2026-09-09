@@ -1,0 +1,150 @@
+{
+  "runId": "15-replay-outcome-permission-denied",
+  "capability": {
+    "id": "open_sub_account",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••55",
+    "accountType": "Club Savings",
+    "nickname": "HOLIDAY",
+    "deposit": "10"
+  },
+  "startedAt": "2026-09-08T21:20:42.321Z",
+  "durationMs": 6439,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 577
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 422,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 454,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 609,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 601,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 449,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 659,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 612,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s8_select",
+      "kind": "select",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 463,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s9_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 426,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s10_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 438,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s11_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 584,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s12_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 141
+    },
+    {
+      "id": "s13_extract",
+      "kind": "extract",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    }
+  ],
+  "drift": [],
+  "recoveries": [],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/15-replay-outcome-permission-denied",
+  "status": "outcome",
+  "outcome": {
+    "code": "PERMISSION_DENIED",
+    "message": "Insufficient privileges. Operator [secret] is not authorized to open sub-accounts for a Restricted member.",
+    "description": "The signed-on operator lacks privileges for this function; a supervisor override is required.",
+    "atStep": "s12_click"
+  }
+}

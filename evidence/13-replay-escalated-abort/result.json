@@ -1,0 +1,237 @@
+{
+  "runId": "13-replay-escalated-abort",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "beta",
+  "inputs": {
+    "memberId": "•••01"
+  },
+  "startedAt": "2026-09-08T21:20:29.643Z",
+  "durationMs": 3424,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 558
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 444,
+      "strategyUsed": "attr (fallback #2)",
+      "fingerprintScore": 0.9
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 469,
+      "strategyUsed": "attr (fallback #2)",
+      "fingerprintScore": 0.9
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "recovered",
+      "attempts": 1,
+      "durationMs": 917,
+      "strategyUsed": "attr (fallback #4)",
+      "fingerprintScore": 0.7999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "failed",
+      "attempts": 3,
+      "durationMs": 541
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    }
+  ],
+  "drift": [
+    {
+      "stepId": "s1_type",
+      "primary": "anchor",
+      "used": "attr",
+      "strategyIndex": 1,
+      "message": "the \"User ID\" text box: primary strategy \"anchor\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Operator ID\" text box",
+        "frame": {
+          "urlPattern": "/t/beta/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Operator ID",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "uid",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Operator ID",
+          "attrName": "uid",
+          "type": "text",
+          "anchor": "Operator ID"
+        }
+      }
+    },
+    {
+      "stepId": "s2_type",
+      "primary": "anchor",
+      "used": "attr",
+      "strategyIndex": 1,
+      "message": "the \"Password\" password: primary strategy \"anchor\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Passcode\" password",
+        "frame": {
+          "urlPattern": "/t/beta/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Passcode",
+            "role": "password"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "pwd",
+            "type": "password"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "password",
+          "name": "Passcode",
+          "attrName": "pwd",
+          "type": "password",
+          "anchor": "Passcode"
+        }
+      }
+    },
+    {
+      "stepId": "s3_click",
+      "primary": "role",
+      "used": "attr",
+      "strategyIndex": 3,
+      "message": "the \"Sign On\" button: primary strategy \"role\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Log In\" button",
+        "frame": {
+          "urlPattern": "/t/beta/login"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Log In"
+          },
+          {
+            "kind": "anchor",
+            "anchor": "Passcode",
+            "role": "button"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Log In"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(4) > td > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Log In",
+          "type": "submit",
+          "anchor": "Passcode"
+        }
+      }
+    }
+  ],
+  "recoveries": [
+    {
+      "stepId": "s3_click",
+      "code": "SYSTEM_NOTICE",
+      "action": "clicked the \"Acknowledge\" button on the system notice",
+      "succeeded": true
+    }
+  ],
+  "interventions": [
+    {
+      "id": "int-mtt6bj7f",
+      "stepId": "s4_click",
+      "cause": "TARGET_NOT_FOUND",
+      "operator": "scripted.operator",
+      "action": "abort",
+      "note": "Operator reviewed the screen and aborted the run.",
+      "humanActions": [],
+      "takenAt": "2026-09-08T21:20:33.064Z",
+      "resolvedAt": "2026-09-08T21:20:33.067Z"
+    }
+  ],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/13-replay-escalated-abort",
+  "status": "escalated",
+  "failure": {
+    "code": "TARGET_NOT_FOUND",
+    "stepId": "s4_click",
+    "message": "could not locate the \"Member Inquiry\" link in frame \"menu\"",
+    "expected": "[{\"kind\":\"role\",\"role\":\"link\",\"name\":\"Member Inquiry\"},{\"kind\":\"css\",\"selector\":\"body > table > tbody > tr:nth-of-type(3) > td > font > a\"}]",
+    "observed": "url=http://localhost:4010/t/beta/console; frames=http://localhost:4010/t/beta/console,http://localhost:4010/t/beta/frame/banner,http://localhost:4010/t/beta/frame/menu,http://localhost:4010/t/beta/home; text=\"[frame hdr] Riverbend Community Bank LegacyCore Teller Console v7.2.1 Operator: T. SMITH (TELLER) | Branch 004 | Sign Off [frame sidebar] MAIN MENU Home Teller Drawer Customer Lookup Reports Wires [frame content] Welcome. Select a function \"",
+    "evidence": {
+      "screenshot": "shots/016-FAIL-s4_click.png",
+      "snapshot": "snapshots/016-s4_click.html"
+    }
+  }
+}

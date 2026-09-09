@@ -1,0 +1,12 @@
+lookup_member_balance v2 [draft] risk=reversible
+  Get Member Share Savings Balance: This capability allows you to look up a member by their member ID and retrieve the current balance of their share savings account. It automates the process of signing in, navigating to the member inquiry section, entering the member ID, and extracting the share savings balance from the member's account details.
+  inputs:   memberId: string [pii]
+  outputs:  share_savings_balance: money
+  outcomes: (app profile only)
+  steps:    8  tenants: beta
+open_sub_account v1 [approved] risk=irreversible
+  Open New Sub-Account for Member: This capability allows you to look up a member using Member Inquiry, open a new sub-account for them (without using the Transactions menu), specify the account type, nickname, and initial deposit, review and confirm the details, and then stop on the screen displaying the host confirmation number. The process ensures the sub-account is created according to the provided specifications and returns the confirmation number for reference.
+  inputs:   memberId: string [pii], accountType: string, nickname: string, deposit: number
+  outputs:  host_confirmation_number: string
+  outcomes: (app profile only)
+  steps:    14  tenants: alpha

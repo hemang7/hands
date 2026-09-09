@@ -1,0 +1,6 @@
+{
+  "status": "success",
+  "steps": 15,
+  "summary": "Opened a new Club Savings sub-account with nickname 'VACATION FUND' and $25.00 deposit for member •••02, and stopped on the host confirmation screen as required.",
+  "capabilityFile": "/Users/hemang/Downloads/hands/capabilities/open_sub_account.v1.json"
+}

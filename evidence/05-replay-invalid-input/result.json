@@ -1,0 +1,81 @@
+{
+  "runId": "05-replay-invalid-input",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "12"
+  },
+  "startedAt": "2026-09-08T21:19:50.534Z",
+  "durationMs": 1,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    }
+  ],
+  "drift": [],
+  "recoveries": [],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/05-replay-invalid-input",
+  "status": "failed",
+  "failure": {
+    "code": "INVALID_INPUT",
+    "message": "input \"memberId\" does not match ^\\d{5}$"
+  }
+}

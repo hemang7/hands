@@ -1,0 +1,28 @@
+{"t":"2026-09-08T21:20:17.574Z","seq":0,"type":"replay.start","capability":"lookup_member_balance","version":1,"status":"draft","tenant":"beta","entryUrl":"http://localhost:4010/t/beta/login","inputs":{"memberId":"10001"},"steps":8,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:20:17.702Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:18.145Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:20:18.277Z","seq":3,"type":"drift","stepId":"s1_type","primary":"anchor","used":"attr","strategyIndex":1,"message":"the \"User ID\" text box: primary strategy \"anchor\" did not match; matched via \"attr\""}
+{"t":"2026-09-08T21:20:18.277Z","seq":4,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:18.588Z","seq":5,"type":"step.ok","step":"s1_type","kind":"type","strategy":"attr (fallback #2)","attempts":1,"screenshot":"shots/005-s1_type.png"}
+{"t":"2026-09-08T21:20:18.720Z","seq":6,"type":"drift","stepId":"s2_type","primary":"anchor","used":"attr","strategyIndex":1,"message":"the \"Password\" password: primary strategy \"anchor\" did not match; matched via \"attr\""}
+{"t":"2026-09-08T21:20:18.720Z","seq":7,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:19.041Z","seq":8,"type":"step.ok","step":"s2_type","kind":"type","strategy":"attr (fallback #2)","attempts":1,"screenshot":"shots/008-s2_type.png"}
+{"t":"2026-09-08T21:20:19.173Z","seq":9,"type":"drift","stepId":"s3_click","primary":"role","used":"attr","strategyIndex":3,"message":"the \"Sign On\" button: primary strategy \"role\" did not match; matched via \"attr\""}
+{"t":"2026-09-08T21:20:19.174Z","seq":10,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:19.642Z","seq":11,"type":"condition","step":"s3_click","code":"SYSTEM_NOTICE","kind":"recoverable","description":"Interstitial system notice that must be acknowledged before the console continues."}
+{"t":"2026-09-08T21:20:19.814Z","seq":12,"type":"recovery","step":"s3_click","code":"SYSTEM_NOTICE","action":"dismiss","target":"the \"Acknowledge\" button on the system notice"}
+{"t":"2026-09-08T21:20:19.958Z","seq":13,"type":"checkpoint.recheck","step":"s3_click","ok":true,"detail":"url http://localhost:4010/t/beta/console matches /t/beta/console"}
+{"t":"2026-09-08T21:20:20.224Z","seq":14,"type":"resolve.retry","step":"s4_click","attempt":1}
+{"t":"2026-09-08T21:20:20.476Z","seq":15,"type":"resolve.retry","step":"s4_click","attempt":2}
+{"t":"2026-09-08T21:20:20.654Z","seq":16,"type":"resolve.failed","step":"s4_click","target":"the \"Member Inquiry\" link in frame \"menu\"","strategies":["role","css"],"screenshot":"shots/016-FAIL-s4_click.png","snapshot":"snapshots/016-s4_click.html"}
+{"t":"2026-09-08T21:20:21.512Z","seq":17,"type":"intervention.resolved","id":"int-mtt6b9v2","stepId":"s4_click","cause":"TARGET_NOT_FOUND","operator":"scripted.operator","action":"skip_step","note":"Opened \"Customer Lookup\" from the menu (this tenant renamed Member Inquiry). Automation can continue from the next step.","humanActions":[{"at":"2026-09-08T21:20:21.003Z","frame":"sidebar","kind":"click","target":"a \"Customer Lookup\""},{"at":"2026-09-08T21:20:21.007Z","frame":"content","kind":"navigate","target":"http://localhost:4010/t/beta/members"}],"takenAt":"2026-09-08T21:20:20.956Z","resolvedAt":"2026-09-08T21:20:21.512Z"}
+{"t":"2026-09-08T21:20:21.655Z","seq":18,"type":"drift","stepId":"s5_type","primary":"anchor","used":"attr","strategyIndex":1,"message":"the \"Member Number\" text box in frame \"main\": primary strategy \"anchor\" did not match; matched via \"attr\""}
+{"t":"2026-09-08T21:20:21.655Z","seq":19,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:21.975Z","seq":20,"type":"step.ok","step":"s5_type","kind":"type","strategy":"attr (fallback #2)","attempts":1,"screenshot":"shots/020-s5_type.png"}
+{"t":"2026-09-08T21:20:22.114Z","seq":21,"type":"drift","stepId":"s6_click","primary":"role","used":"attr","strategyIndex":2,"message":"the \"Inquire\" button in frame \"main\": primary strategy \"role\" did not match; matched via \"attr\""}
+{"t":"2026-09-08T21:20:22.114Z","seq":22,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:22.567Z","seq":23,"type":"step.ok","step":"s6_click","kind":"click","strategy":"attr (fallback #3)","attempts":1,"screenshot":"shots/023-s6_click.png"}
+{"t":"2026-09-08T21:20:22.707Z","seq":24,"type":"drift","stepId":"s7_extract","primary":"grid","used":"anchor","strategyIndex":3,"message":"the \"Current Balance\" cell of the \"Share Savings\" row in frame \"main\": primary strategy \"grid\" did not match; matched via \"anchor\""}
+{"t":"2026-09-08T21:20:22.876Z","seq":25,"type":"extract","step":"s7_extract","output":"share_savings_balance","raw":"$4,812.33","parsed":4812.33,"screenshot":"shots/025-s7_extract.png"}
+{"t":"2026-09-08T21:20:22.876Z","seq":26,"type":"step.ok","step":"s7_extract","kind":"extract","strategy":"anchor (fallback #4)","attempts":1,"screenshot":"shots/025-s7_extract.png"}
+{"t":"2026-09-08T21:20:23.017Z","seq":27,"type":"replay.success","outputs":{"share_savings_balance":4812.33},"drift":6,"recoveries":1,"interventions":1}

@@ -1,0 +1,681 @@
+{
+  "schemaVersion": "1.0",
+  "id": "open_sub_account",
+  "version": 1,
+  "status": "approved",
+  "name": "Open New Sub-Account for Member",
+  "description": "This capability allows you to look up a member using Member Inquiry, open a new sub-account for them (without using the Transactions menu), specify the account type, nickname, and initial deposit, review and confirm the details, and then stop on the screen displaying the host confirmation number. The process ensures the sub-account is created according to the provided specifications and returns the confirmation number for reference.",
+  "app": {
+    "profile": "legacycore-teller",
+    "surface": "web",
+    "entryUrl": "http://localhost:4010/t/alpha/login"
+  },
+  "inputs": {
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier of the member for whom the new sub-account will be opened.",
+      "required": true,
+      "pattern": "^\\d{5}$",
+      "sensitivity": "pii"
+    },
+    "accountType": {
+      "type": "string",
+      "description": "The type of sub-account to be created (e.g., Club Savings).",
+      "required": true,
+      "sensitivity": "none",
+      "example": "Club Savings"
+    },
+    "nickname": {
+      "type": "string",
+      "description": "The nickname to assign to the new sub-account.",
+      "required": true,
+      "sensitivity": "none",
+      "example": "VACATION FUND"
+    },
+    "deposit": {
+      "type": "number",
+      "description": "The initial deposit amount (in dollars) for the new sub-account.",
+      "required": true,
+      "sensitivity": "none",
+      "example": "25.00"
+    }
+  },
+  "outputs": {
+    "host_confirmation_number": {
+      "type": "string",
+      "description": "The confirmation number displayed by the host system after successfully opening the new sub-account.",
+      "sensitivity": "none",
+      "fromStep": "s13_extract"
+    }
+  },
+  "outcomes": [],
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "description": "Open the application entry point",
+      "url": "http://localhost:4010/t/alpha/login",
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/login"
+          }
+        ]
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "description": "Entering the username to sign on.",
+      "target": {
+        "description": "the \"User ID\" text box",
+        "frame": {
+          "urlPattern": "/t/alpha/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "User ID",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "uid",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "User ID",
+          "attrName": "uid",
+          "type": "text",
+          "anchor": "User ID"
+        }
+      },
+      "value": {
+        "kind": "secret",
+        "ref": "LEGACYCORE_USER"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "description": "Entering the password to sign on.",
+      "target": {
+        "description": "the \"Password\" password",
+        "frame": {
+          "urlPattern": "/t/alpha/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Password",
+            "role": "password"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "pwd",
+            "type": "password"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "password",
+          "name": "Password",
+          "attrName": "pwd",
+          "type": "password",
+          "anchor": "Password"
+        }
+      },
+      "value": {
+        "kind": "secret",
+        "ref": "LEGACYCORE_PASSWORD"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "description": "Clicking the 'Sign On' button to log in after entering credentials.",
+      "target": {
+        "description": "the \"Sign On\" button",
+        "frame": {
+          "urlPattern": "/t/alpha/login"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Sign On"
+          },
+          {
+            "kind": "anchor",
+            "anchor": "Password",
+            "role": "button"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Sign On"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(4) > td > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Sign On",
+          "type": "submit",
+          "anchor": "Password"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/console"
+          }
+        ]
+      },
+      "risk": "reversible"
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "description": "Clicking 'Member Inquiry' in the menu to begin looking up the member as required by the goal.",
+      "target": {
+        "description": "the \"Member Inquiry\" link in frame \"menu\"",
+        "frame": {
+          "name": "menu",
+          "urlPattern": "/t/alpha/frame/menu"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Member Inquiry"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr:nth-of-type(3) > td > font > a"
+          }
+        ],
+        "fingerprint": {
+          "tag": "a",
+          "role": "link",
+          "name": "Member Inquiry"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members"
+          }
+        ]
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "description": "Entering the member number {memberId} to look up the member as required by the goal.",
+      "target": {
+        "description": "the \"Member Number\" text box in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Member Number",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "txt1",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Member Number",
+          "attrName": "txt1",
+          "type": "text",
+          "anchor": "Member Number"
+        }
+      },
+      "value": {
+        "kind": "param",
+        "name": "memberId"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "description": "Clicking the 'Inquire' button to look up the member as required by the goal.",
+      "target": {
+        "description": "the \"Inquire\" button in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Inquire"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Inquire"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input:nth-of-type(1)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Inquire",
+          "type": "submit"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members/:id"
+          }
+        ]
+      },
+      "risk": "reversible"
+    },
+    {
+      "id": "s7_click",
+      "kind": "click",
+      "description": "Clicking the 'Open Sub-Account' button to begin opening a new sub-account as required by the goal.",
+      "target": {
+        "description": "the \"Open Sub-Account\" button in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Open Sub-Account"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Open Sub-Account"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table:nth-of-type(3) > tbody > tr > td:nth-of-type(1) > form > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Open Sub-Account",
+          "type": "submit"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members/:id/subaccount/new"
+          }
+        ]
+      },
+      "risk": "reversible"
+    },
+    {
+      "id": "s8_select",
+      "kind": "select",
+      "description": "Selecting '{accountType}' as the account type as required by the goal.",
+      "target": {
+        "description": "the \"Account Type\" dropdown in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id/subaccount/new"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Account Type",
+            "role": "combobox"
+          },
+          {
+            "kind": "attr",
+            "tag": "select",
+            "name": "sel1"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > select"
+          }
+        ],
+        "fingerprint": {
+          "tag": "select",
+          "role": "combobox",
+          "name": "Account Type",
+          "attrName": "sel1",
+          "anchor": "Account Type"
+        }
+      },
+      "value": {
+        "kind": "param",
+        "name": "accountType"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s9_type",
+      "kind": "type",
+      "description": "Entering '{nickname}' as the nickname for the new sub-account as required by the goal.",
+      "target": {
+        "description": "the \"Nickname\" text box in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id/subaccount/new"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Nickname",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "txt2",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Nickname",
+          "attrName": "txt2",
+          "type": "text",
+          "anchor": "Nickname"
+        }
+      },
+      "value": {
+        "kind": "param",
+        "name": "nickname"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s10_type",
+      "kind": "type",
+      "description": "Entering '{deposit}' as the initial deposit for the new sub-account as required by the goal.",
+      "target": {
+        "description": "the \"Initial Deposit\" text box in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id/subaccount/new"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Initial Deposit",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "txt3",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Initial Deposit",
+          "attrName": "txt3",
+          "type": "text",
+          "anchor": "Initial Deposit"
+        }
+      },
+      "value": {
+        "kind": "param",
+        "name": "deposit"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s11_click",
+      "kind": "click",
+      "description": "Clicking the 'Continue' button to proceed to the review screen before confirming the new sub-account opening as required by the goal.",
+      "target": {
+        "description": "the \"Continue\" button in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id/subaccount/new"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Continue"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Continue"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > input:nth-of-type(1)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Continue",
+          "type": "submit"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members/:id/subaccount/review"
+          }
+        ]
+      },
+      "risk": "reversible"
+    },
+    {
+      "id": "s12_click",
+      "kind": "click",
+      "description": "Clicking the 'Confirm' button to post the new sub-account after reviewing that all details match the goal. The dialog was previously dismissed, so accepting it is now required.",
+      "target": {
+        "description": "the \"Confirm\" button in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id/subaccount/review"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Confirm"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Confirm"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table:nth-of-type(2) > tbody > tr > td:nth-of-type(1) > form > input:nth-of-type(4)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Confirm",
+          "type": "submit"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members/:id/subaccount/confirm"
+          }
+        ]
+      },
+      "dialog": {
+        "expect": "confirm",
+        "respond": "accept"
+      },
+      "risk": "irreversible"
+    },
+    {
+      "id": "s13_extract",
+      "kind": "extract",
+      "description": "The goal requires stopping on the screen that shows the host confirmation number, and this element contains that value.",
+      "target": {
+        "description": "the \"HC02375991\" text in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id/subaccount/confirm"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Host confirmation number",
+            "role": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > font > b:nth-of-type(2)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "b",
+          "role": "text",
+          "name": "",
+          "anchor": "Host confirmation number"
+        }
+      },
+      "output": "host_confirmation_number",
+      "parse": "text",
+      "risk": "safe"
+    }
+  ],
+  "success": {
+    "all": [
+      {
+        "urlMatches": "/t/alpha/members/:id/subaccount/confirm"
+      },
+      {
+        "textPresent": "TRANSACTION POSTED"
+      }
+    ]
+  },
+  "policy": {
+    "allowlist": {
+      "origins": [
+        "http://localhost:4010"
+      ],
+      "routes": [
+        "/t/alpha/console",
+        "/t/alpha/frame/banner",
+        "/t/alpha/frame/menu",
+        "/t/alpha/home",
+        "/t/alpha/login",
+        "/t/alpha/members",
+        "/t/alpha/members/:id",
+        "/t/alpha/members/:id/subaccount/confirm",
+        "/t/alpha/members/:id/subaccount/new",
+        "/t/alpha/members/:id/subaccount/review"
+      ],
+      "actions": [
+        "navigate",
+        "click",
+        "type",
+        "select",
+        "extract",
+        "assert",
+        "dismiss"
+      ]
+    },
+    "maxRisk": "irreversible"
+  },
+  "provenance": {
+    "recordedAt": "2026-09-08T21:19:39.710Z",
+    "recordedBy": "discovery",
+    "model": "gpt-4.1",
+    "discoveryRunId": "02-discovery-open_sub_account",
+    "goal": "Use Member Inquiry to look up member {memberId}. On their member detail screen, use the button that opens a new sub-account (do not use the Transactions menu item, which is unrelated). Set the account type to {accountType}, the nickname to {nickname}, and the initial deposit to {deposit} dollars. Review the details, confirm the posting, and stop on the screen that shows the host confirmation number.",
+    "tenant": "alpha",
+    "humanInterventions": 0
+  }
+}

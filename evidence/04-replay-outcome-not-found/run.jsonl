@@ -1,0 +1,16 @@
+{"t":"2026-09-08T21:19:46.075Z","seq":0,"type":"replay.start","capability":"lookup_member_balance","version":1,"status":"draft","tenant":"alpha","entryUrl":"http://localhost:4010/t/alpha/login","inputs":{"memberId":"99999"},"steps":8,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:19:46.205Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:46.632Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:19:46.770Z","seq":3,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:47.094Z","seq":4,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/004-s1_type.png"}
+{"t":"2026-09-08T21:19:47.226Z","seq":5,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:47.543Z","seq":6,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/006-s2_type.png"}
+{"t":"2026-09-08T21:19:47.675Z","seq":7,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:19:48.160Z","seq":8,"type":"step.ok","step":"s3_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/008-s3_click.png"}
+{"t":"2026-09-08T21:19:48.296Z","seq":9,"type":"policy","step":"s4_click","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:48.775Z","seq":10,"type":"step.ok","step":"s4_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/010-s4_click.png"}
+{"t":"2026-09-08T21:19:48.901Z","seq":11,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:49.203Z","seq":12,"type":"step.ok","step":"s5_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/012-s5_type.png"}
+{"t":"2026-09-08T21:19:49.341Z","seq":13,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:19:49.785Z","seq":14,"type":"condition","step":"s6_click","code":"RECORD_NOT_FOUND","kind":"business","description":"The requested record (member, account) does not exist on the host. A legitimate answer, not a failure."}
+{"t":"2026-09-08T21:19:49.786Z","seq":15,"type":"replay.outcome","code":"RECORD_NOT_FOUND","atStep":"s6_click","message":"No record found for member •••99."}

@@ -1,0 +1,34 @@
+STEP 12/30
+LAST ACTION RESULT: ok
+URL: http://localhost:4010/t/alpha/console
+TITLE: Hoosier Federal Credit Union - Teller Console
+FRAMES: top -> http://localhost:4010/t/alpha/console | banner -> http://localhost:4010/t/alpha/frame/banner | menu -> http://localhost:4010/t/alpha/frame/menu | main -> http://localhost:4010/t/alpha/members/•••02/subaccount/review
+ELEMENTS:
+  [0] link "Sign Off" frame=banner label="Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1"
+  [1] cell "Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1" frame=banner
+  [2] text "Hoosier Federal Credit Union" frame=banner
+  [3] text "LegacyCore Teller Console v7.2.1" frame=banner
+  [4] link "Home" frame=menu label="MAIN MENU"
+  [5] link "Member Inquiry" frame=menu
+  [6] link "Transactions" frame=menu
+  [7] link "Reports" frame=menu
+  [8] link "Administration" frame=menu
+  [9] cell "MAIN MENU" frame=menu
+  [10] button "Confirm" frame=main
+  [11] button "Back" frame=main
+  [12] cell "REVIEW NEW SUB-ACCOUNT" frame=main
+  [13] cell "Member Number" frame=main label="REVIEW NEW SUB-ACCOUNT" column="REVIEW NEW SUB-ACCOUNT" row=["•••02 OKAFOR, DANIEL"]
+  [14] cell "•••02 OKAFOR, DANIEL" frame=main label="Member Number"
+  [15] cell "Account Type" frame=main label="Member Number" column="REVIEW NEW SUB-ACCOUNT" row=["Club Savings"]
+  [16] cell "Club Savings" frame=main label="Account Type"
+  [17] cell "Nickname" frame=main label="Account Type" column="REVIEW NEW SUB-ACCOUNT" row=["VACATION FUND"]
+  [18] cell "VACATION FUND" frame=main label="Nickname"
+  [19] cell "Initial Deposit" frame=main label="Nickname" column="REVIEW NEW SUB-ACCOUNT" row=["$25.00"]
+  [20] cell "$25.00" frame=main label="Initial Deposit"
+  [21] text "Review the details above. Press Confirm to post this sub-account to the host. This cannot be undone from the console." frame=main
+  [22] text "This cannot be undone from the console." frame=main label="this sub-account to the host"
+  [23] text "LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured" frame=main
+VISIBLE TEXT (truncated):
+  [frame banner] Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1 Operator: T. SMITH (TELLER) | Branch 004 | Sign Off
+  [frame menu] MAIN MENU Home Member Inquiry Transactions Reports Administration
+  [frame main] REVIEW NEW SUB-ACCOUNT Member Number •••02 OKAFOR, DANIEL Account Type Club Savings Nickname VACATION FUND Initial Deposit $25.00 Review the details above. Press Confirm to post this sub-account to the host. This cannot be undone from the console. LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured

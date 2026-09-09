@@ -1,0 +1,150 @@
+{
+  "runId": "16-replay-outcome-validation-error",
+  "capability": {
+    "id": "open_sub_account",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••03",
+    "accountType": "Club Savings",
+    "nickname": "AB",
+    "deposit": "1"
+  },
+  "startedAt": "2026-09-08T21:20:49.572Z",
+  "durationMs": 6319,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 572
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 442,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 452,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 606,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 582,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 453,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 563,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 600,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s8_select",
+      "kind": "select",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 456,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s9_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 429,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s10_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 435,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s11_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 589,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s12_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 137
+    },
+    {
+      "id": "s13_extract",
+      "kind": "extract",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    }
+  ],
+  "drift": [],
+  "recoveries": [],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/16-replay-outcome-validation-error",
+  "status": "outcome",
+  "outcome": {
+    "code": "VALIDATION_ERROR",
+    "message": "Nickname must be at least 3 characters.",
+    "description": "The console rejected an input value; the caller supplied something the app will not accept.",
+    "atStep": "s12_click"
+  }
+}

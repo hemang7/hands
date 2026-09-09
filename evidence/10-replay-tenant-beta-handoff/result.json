@@ -1,0 +1,375 @@
+{
+  "runId": "10-replay-tenant-beta-handoff",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "beta",
+  "inputs": {
+    "memberId": "•••01"
+  },
+  "startedAt": "2026-09-08T21:20:17.574Z",
+  "durationMs": 5444,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 570
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 442,
+      "strategyUsed": "attr (fallback #2)",
+      "fingerprintScore": 0.9
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 453,
+      "strategyUsed": "attr (fallback #2)",
+      "fingerprintScore": 0.9
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "recovered",
+      "attempts": 1,
+      "durationMs": 917,
+      "strategyUsed": "attr (fallback #4)",
+      "fingerprintScore": 0.7999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "skipped_by_human",
+      "attempts": 3,
+      "durationMs": 519
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 462,
+      "strategyUsed": "attr (fallback #2)",
+      "fingerprintScore": 0.9
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 592,
+      "strategyUsed": "attr (fallback #3)",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 309,
+      "strategyUsed": "anchor (fallback #4)",
+      "fingerprintScore": 0.8999999999999999
+    }
+  ],
+  "drift": [
+    {
+      "stepId": "s1_type",
+      "primary": "anchor",
+      "used": "attr",
+      "strategyIndex": 1,
+      "message": "the \"User ID\" text box: primary strategy \"anchor\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Operator ID\" text box",
+        "frame": {
+          "urlPattern": "/t/beta/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Operator ID",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "uid",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Operator ID",
+          "attrName": "uid",
+          "type": "text",
+          "anchor": "Operator ID"
+        }
+      }
+    },
+    {
+      "stepId": "s2_type",
+      "primary": "anchor",
+      "used": "attr",
+      "strategyIndex": 1,
+      "message": "the \"Password\" password: primary strategy \"anchor\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Passcode\" password",
+        "frame": {
+          "urlPattern": "/t/beta/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Passcode",
+            "role": "password"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "pwd",
+            "type": "password"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "password",
+          "name": "Passcode",
+          "attrName": "pwd",
+          "type": "password",
+          "anchor": "Passcode"
+        }
+      }
+    },
+    {
+      "stepId": "s3_click",
+      "primary": "role",
+      "used": "attr",
+      "strategyIndex": 3,
+      "message": "the \"Sign On\" button: primary strategy \"role\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Log In\" button",
+        "frame": {
+          "urlPattern": "/t/beta/login"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Log In"
+          },
+          {
+            "kind": "anchor",
+            "anchor": "Passcode",
+            "role": "button"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Log In"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(4) > td > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Log In",
+          "type": "submit",
+          "anchor": "Passcode"
+        }
+      }
+    },
+    {
+      "stepId": "s5_type",
+      "primary": "anchor",
+      "used": "attr",
+      "strategyIndex": 1,
+      "message": "the \"Member Number\" text box in frame \"main\": primary strategy \"anchor\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Member No.\" text box in frame \"content\"",
+        "frame": {
+          "name": "content",
+          "urlPattern": "/t/beta/members"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Member No.",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "txt1",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Member No.",
+          "attrName": "txt1",
+          "type": "text",
+          "anchor": "Member No."
+        }
+      }
+    },
+    {
+      "stepId": "s6_click",
+      "primary": "role",
+      "used": "attr",
+      "strategyIndex": 2,
+      "message": "the \"Inquire\" button in frame \"main\": primary strategy \"role\" did not match; matched via \"attr\"",
+      "matchedTarget": {
+        "description": "the \"Search\" button in frame \"content\"",
+        "frame": {
+          "name": "content",
+          "urlPattern": "/t/beta/members"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Search"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Search"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input:nth-of-type(1)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Search",
+          "type": "submit"
+        }
+      }
+    },
+    {
+      "stepId": "s7_extract",
+      "primary": "grid",
+      "used": "anchor",
+      "strategyIndex": 3,
+      "message": "the \"Current Balance\" cell of the \"Share Savings\" row in frame \"main\": primary strategy \"grid\" did not match; matched via \"anchor\"",
+      "matchedTarget": {
+        "description": "the \"Ledger Balance\" cell of the \"Share Savings\" row in frame \"content\"",
+        "frame": {
+          "name": "content",
+          "urlPattern": "/t/beta/members/:id"
+        },
+        "strategies": [
+          {
+            "kind": "grid",
+            "row": "Share Savings",
+            "column": "Ledger Balance"
+          },
+          {
+            "kind": "grid",
+            "row": "PRIMARY SAVINGS",
+            "column": "Ledger Balance"
+          },
+          {
+            "kind": "grid",
+            "row": "S01",
+            "column": "Ledger Balance"
+          },
+          {
+            "kind": "anchor",
+            "anchor": "PRIMARY SAVINGS",
+            "role": "cell"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(4)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "td",
+          "role": "cell",
+          "name": "",
+          "anchor": "PRIMARY SAVINGS"
+        }
+      }
+    }
+  ],
+  "recoveries": [
+    {
+      "stepId": "s3_click",
+      "code": "SYSTEM_NOTICE",
+      "action": "clicked the \"Acknowledge\" button on the system notice",
+      "succeeded": true
+    }
+  ],
+  "interventions": [
+    {
+      "id": "int-mtt6b9v2",
+      "stepId": "s4_click",
+      "cause": "TARGET_NOT_FOUND",
+      "operator": "scripted.operator",
+      "action": "skip_step",
+      "note": "Opened \"Customer Lookup\" from the menu (this tenant renamed Member Inquiry). Automation can continue from the next step.",
+      "humanActions": [
+        {
+          "at": "2026-09-08T21:20:21.003Z",
+          "frame": "sidebar",
+          "kind": "click",
+          "target": "a \"Customer Lookup\""
+        },
+        {
+          "at": "2026-09-08T21:20:21.007Z",
+          "frame": "content",
+          "kind": "navigate",
+          "target": "http://localhost:4010/t/beta/members"
+        }
+      ],
+      "takenAt": "2026-09-08T21:20:20.956Z",
+      "resolvedAt": "2026-09-08T21:20:21.512Z"
+    }
+  ],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/10-replay-tenant-beta-handoff",
+  "status": "success",
+  "outputs": {
+    "share_savings_balance": 4812.33
+  }
+}

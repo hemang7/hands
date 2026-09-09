@@ -1,0 +1,147 @@
+{
+  "id": "legacycore-teller",
+  "vendor": "LegacyCore",
+  "product": "Teller Console 7.x",
+  "description": "Frameset-based core banking teller console. Table layouts, no ids, native confirm() on posting actions.",
+  "secrets": {
+    "username": "LEGACYCORE_USER",
+    "password": "LEGACYCORE_PASSWORD"
+  },
+  "irreversibleControlPattern": "^(confirm|post|submit|approve|transfer|delete|close account)$",
+  "conditions": [
+    {
+      "code": "SESSION_EXPIRED",
+      "kind": "recoverable",
+      "description": "Host session timed out; the console bounced to the sign-on screen.",
+      "detect": {
+        "any": [
+          {
+            "textPresent": "session has expired"
+          },
+          {
+            "textPresent": "Please sign on to continue"
+          }
+        ]
+      },
+      "recovery": {
+        "kind": "reauth",
+        "capability": "legacycore_sign_on",
+        "then": "restart"
+      }
+    },
+    {
+      "code": "SYSTEM_NOTICE",
+      "kind": "recoverable",
+      "description": "Interstitial system notice that must be acknowledged before the console continues.",
+      "detect": {
+        "all": [
+          {
+            "textPresent": "SYSTEM NOTICE"
+          },
+          {
+            "elementPresent": {
+              "role": "button",
+              "name": "Acknowledge"
+            }
+          }
+        ]
+      },
+      "recovery": {
+        "kind": "dismiss",
+        "then": "retry_step",
+        "target": {
+          "description": "the \"Acknowledge\" button on the system notice",
+          "frame": {},
+          "strategies": [
+            {
+              "kind": "role",
+              "role": "button",
+              "name": "Acknowledge"
+            }
+          ],
+          "fingerprint": {
+            "tag": "input",
+            "role": "button",
+            "name": "Acknowledge",
+            "type": "submit"
+          }
+        }
+      }
+    },
+    {
+      "code": "APP_ERROR",
+      "kind": "hard",
+      "description": "The host returned an application error page (stack trace / ORA- code).",
+      "detect": {
+        "any": [
+          {
+            "textPresent": "Application Error"
+          },
+          {
+            "textMatches": "ORA-\\d{5}"
+          }
+        ]
+      },
+      "captureMessage": "(Application Error[\\s\\S]{0,160})"
+    },
+    {
+      "code": "RECORD_NOT_FOUND",
+      "kind": "business",
+      "description": "The requested record (member, account) does not exist on the host. A legitimate answer, not a failure.",
+      "detect": {
+        "any": [
+          {
+            "textPresent": "No record found"
+          }
+        ]
+      },
+      "captureMessage": "(No record found[^.]*\\.)"
+    },
+    {
+      "code": "PERMISSION_DENIED",
+      "kind": "business",
+      "description": "The signed-on operator lacks privileges for this function; a supervisor override is required.",
+      "detect": {
+        "any": [
+          {
+            "textPresent": "Insufficient privileges"
+          },
+          {
+            "textPresent": "not authorized"
+          }
+        ]
+      },
+      "captureMessage": "(Insufficient privileges[^.]*\\.[^.]*\\.)"
+    },
+    {
+      "code": "VALIDATION_ERROR",
+      "kind": "business",
+      "description": "The console rejected an input value; the caller supplied something the app will not accept.",
+      "detect": {
+        "any": [
+          {
+            "textPresent": "Invalid member number format"
+          },
+          {
+            "textMatches": "must be at least"
+          },
+          {
+            "textPresent": "is required"
+          }
+        ]
+      },
+      "captureMessage": "((?:Invalid|[A-Z][a-z]+ (?:must|is) )[^.]*\\.)"
+    }
+  ],
+  "tenants": {
+    "alpha": {
+      "label": "Hoosier Federal Credit Union",
+      "entryUrl": "http://localhost:4010/t/alpha/login"
+    },
+    "beta": {
+      "label": "Riverbend Community Bank",
+      "entryUrl": "http://localhost:4010/t/beta/login",
+      "notes": "Same vendor build, different labels and frame names, extra post-login notice."
+    }
+  }
+}

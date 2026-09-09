@@ -1,0 +1,151 @@
+{
+  "runId": "17-replay-irreversible-approved-confirmed",
+  "capability": {
+    "id": "open_sub_account",
+    "version": 1,
+    "status": "approved"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••03",
+    "accountType": "Club Savings",
+    "nickname": "RAINY DAY",
+    "deposit": "15"
+  },
+  "startedAt": "2026-09-08T21:20:57.233Z",
+  "durationMs": 7315,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 559
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 423,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 453,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 610,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 605,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 462,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 593,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 615,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s8_select",
+      "kind": "select",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 454,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s9_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 449,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s10_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 437,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s11_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 606,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s12_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 599,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s13_extract",
+      "kind": "extract",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 312,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 0.8999999999999999
+    }
+  ],
+  "drift": [],
+  "recoveries": [],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/17-replay-irreversible-approved-confirmed",
+  "status": "success",
+  "outputs": {
+    "host_confirmation_number": "HC02463684"
+  }
+}

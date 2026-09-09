@@ -1,0 +1,6 @@
+{
+  "status": "success",
+  "steps": 8,
+  "summary": "Located and read the current share savings balance for member •••01.",
+  "capabilityFile": "/Users/hemang/Downloads/hands/capabilities/lookup_member_balance.v1.json"
+}

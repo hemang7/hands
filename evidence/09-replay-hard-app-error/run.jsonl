@@ -1,0 +1,15 @@
+{"t":"2026-09-08T21:20:13.088Z","seq":0,"type":"replay.start","capability":"lookup_member_balance","version":1,"status":"draft","tenant":"alpha","entryUrl":"http://localhost:4010/t/alpha/login","inputs":{"memberId":"10001"},"steps":8,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:20:13.218Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:13.663Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:20:13.789Z","seq":3,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:14.091Z","seq":4,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/004-s1_type.png"}
+{"t":"2026-09-08T21:20:14.222Z","seq":5,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:14.542Z","seq":6,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/006-s2_type.png"}
+{"t":"2026-09-08T21:20:14.675Z","seq":7,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:15.167Z","seq":8,"type":"step.ok","step":"s3_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/008-s3_click.png"}
+{"t":"2026-09-08T21:20:15.303Z","seq":9,"type":"policy","step":"s4_click","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:15.784Z","seq":10,"type":"step.ok","step":"s4_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/010-s4_click.png"}
+{"t":"2026-09-08T21:20:15.924Z","seq":11,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:16.250Z","seq":12,"type":"step.ok","step":"s5_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/012-s5_type.png"}
+{"t":"2026-09-08T21:20:16.391Z","seq":13,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:16.826Z","seq":14,"type":"condition","step":"s6_click","code":"APP_ERROR","kind":"hard","description":"The host returned an application error page (stack trace / ORA- code)."}

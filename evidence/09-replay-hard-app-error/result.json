@@ -1,0 +1,99 @@
+{
+  "runId": "09-replay-hard-app-error",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••01"
+  },
+  "startedAt": "2026-09-08T21:20:13.088Z",
+  "durationMs": 3761,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 574
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 428,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 451,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 624,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 617,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 466,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "failed",
+      "attempts": 1,
+      "durationMs": 599,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "not_run",
+      "attempts": 0,
+      "durationMs": 0
+    }
+  ],
+  "drift": [],
+  "recoveries": [],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/09-replay-hard-app-error",
+  "status": "failed",
+  "failure": {
+    "code": "APP_ERROR",
+    "stepId": "s6_click",
+    "message": "Application Error ORA-01033: ORACLE initialization or shutdown in progress at LC.Inquiry.MemberSearch(MemberSearch.cs:212) Contact the help desk. Reference #12516 LegacyCore Tel",
+    "observed": "url=http://localhost:4010/t/alpha/console; frames=http://localhost:4010/t/alpha/console,http://localhost:4010/t/alpha/frame/banner,http://localhost:4010/t/alpha/frame/menu,http://localhost:4010/t/alpha/members/inquire; text=\"[frame banner] Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1 Operator: T. SMITH (TELLER) | Branch 004 | Sign Off [frame menu] MAIN MENU Home Member Inquiry Transactions Reports Administration [frame main] Application Error O\"",
+    "evidence": {
+      "screenshot": "shots/015-FAIL-s6_click-APP_ERROR.png",
+      "snapshot": "snapshots/015-s6_click-APP_ERROR.html"
+    }
+  }
+}

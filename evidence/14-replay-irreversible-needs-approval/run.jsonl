@@ -1,0 +1,30 @@
+{"t":"2026-09-08T21:20:33.850Z","seq":0,"type":"replay.start","capability":"open_sub_account","version":1,"status":"draft","tenant":"alpha","entryUrl":"http://localhost:4010/t/alpha/login","inputs":{"memberId":"10003","accountType":"Money Market","nickname":"TAX RESERVE","deposit":"40"},"steps":14,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:20:33.981Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:34.429Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:20:34.562Z","seq":3,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:34.869Z","seq":4,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/004-s1_type.png"}
+{"t":"2026-09-08T21:20:34.996Z","seq":5,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:35.321Z","seq":6,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/006-s2_type.png"}
+{"t":"2026-09-08T21:20:35.452Z","seq":7,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:35.929Z","seq":8,"type":"step.ok","step":"s3_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/008-s3_click.png"}
+{"t":"2026-09-08T21:20:36.067Z","seq":9,"type":"policy","step":"s4_click","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:36.536Z","seq":10,"type":"step.ok","step":"s4_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/010-s4_click.png"}
+{"t":"2026-09-08T21:20:36.672Z","seq":11,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:36.982Z","seq":12,"type":"step.ok","step":"s5_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/012-s5_type.png"}
+{"t":"2026-09-08T21:20:37.120Z","seq":13,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:37.573Z","seq":14,"type":"step.ok","step":"s6_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/014-s6_click.png"}
+{"t":"2026-09-08T21:20:37.702Z","seq":15,"type":"policy","step":"s7_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:38.146Z","seq":16,"type":"step.ok","step":"s7_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/016-s7_click.png"}
+{"t":"2026-09-08T21:20:38.276Z","seq":17,"type":"policy","step":"s8_select","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:38.583Z","seq":18,"type":"step.ok","step":"s8_select","kind":"select","strategy":"anchor","attempts":1,"screenshot":"shots/018-s8_select.png"}
+{"t":"2026-09-08T21:20:38.720Z","seq":19,"type":"policy","step":"s9_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:39.011Z","seq":20,"type":"step.ok","step":"s9_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/020-s9_type.png"}
+{"t":"2026-09-08T21:20:39.142Z","seq":21,"type":"policy","step":"s10_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:39.428Z","seq":22,"type":"step.ok","step":"s10_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/022-s10_type.png"}
+{"t":"2026-09-08T21:20:39.572Z","seq":23,"type":"policy","step":"s11_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:40.019Z","seq":24,"type":"step.ok","step":"s11_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/024-s11_click.png"}
+{"t":"2026-09-08T21:20:40.153Z","seq":25,"type":"policy","step":"s12_click","risk":"irreversible","allowed":false,"reason":"irreversible step; artifact is not approved"}
+{"t":"2026-09-08T21:20:41.127Z","seq":26,"type":"intervention.resolved","id":"int-mtt6boxi","stepId":"s12_click","cause":"POLICY_BLOCKED","operator":"scripted.operator","action":"skip_step","note":"Reviewed values and pressed Confirm myself; the posting is done.","humanActions":[{"at":"2026-09-08T21:20:40.521Z","frame":"main","kind":"click","target":"input[type=submit] \"Confirm\""},{"at":"2026-09-08T21:20:40.522Z","frame":"main","kind":"submit","target":"form \"\""},{"at":"2026-09-08T21:20:40.524Z","frame":"","kind":"dialog","target":"confirm \"Post new sub-account to host? This cannot be undone.\" accepted"},{"at":"2026-09-08T21:20:40.537Z","frame":"main","kind":"navigate","target":"http://localhost:4010/t/alpha/members/•••03/subaccount/confirm"}],"takenAt":"2026-09-08T21:20:40.483Z","resolvedAt":"2026-09-08T21:20:41.127Z"}
+{"t":"2026-09-08T21:20:41.433Z","seq":27,"type":"extract","step":"s13_extract","output":"host_confirmation_number","raw":"HC02440535","parsed":"HC02440535","screenshot":"shots/027-s13_extract.png"}
+{"t":"2026-09-08T21:20:41.433Z","seq":28,"type":"step.ok","step":"s13_extract","kind":"extract","strategy":"anchor","attempts":1,"screenshot":"shots/027-s13_extract.png"}
+{"t":"2026-09-08T21:20:41.562Z","seq":29,"type":"replay.success","outputs":{"host_confirmation_number":"HC02440535"},"drift":0,"recoveries":0,"interventions":1}

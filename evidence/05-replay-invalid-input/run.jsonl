@@ -1,0 +1,2 @@
+{"t":"2026-09-08T21:19:50.534Z","seq":0,"type":"replay.start","capability":"lookup_member_balance","version":1,"status":"draft","tenant":"alpha","entryUrl":"http://localhost:4010/t/alpha/login","inputs":{"memberId":"12"},"steps":8,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:19:50.535Z","seq":1,"type":"replay.failed","code":"INVALID_INPUT","message":"input \"memberId\" does not match ^\\d{5}$"}

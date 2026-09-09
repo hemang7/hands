@@ -1,0 +1,27 @@
+{"t":"2026-09-08T21:20:49.572Z","seq":0,"type":"replay.start","capability":"open_sub_account","version":1,"status":"draft","tenant":"alpha","entryUrl":"http://localhost:4010/t/alpha/login","inputs":{"memberId":"10003","accountType":"Club Savings","nickname":"AB","deposit":"1"},"steps":14,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:20:49.701Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:50.145Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:20:50.277Z","seq":3,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:50.587Z","seq":4,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/004-s1_type.png"}
+{"t":"2026-09-08T21:20:50.716Z","seq":5,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:51.039Z","seq":6,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/006-s2_type.png"}
+{"t":"2026-09-08T21:20:51.172Z","seq":7,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:51.645Z","seq":8,"type":"step.ok","step":"s3_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/008-s3_click.png"}
+{"t":"2026-09-08T21:20:51.773Z","seq":9,"type":"policy","step":"s4_click","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:52.227Z","seq":10,"type":"step.ok","step":"s4_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/010-s4_click.png"}
+{"t":"2026-09-08T21:20:52.367Z","seq":11,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:52.680Z","seq":12,"type":"step.ok","step":"s5_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/012-s5_type.png"}
+{"t":"2026-09-08T21:20:52.817Z","seq":13,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:53.243Z","seq":14,"type":"step.ok","step":"s6_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/014-s6_click.png"}
+{"t":"2026-09-08T21:20:53.384Z","seq":15,"type":"policy","step":"s7_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:53.843Z","seq":16,"type":"step.ok","step":"s7_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/016-s7_click.png"}
+{"t":"2026-09-08T21:20:53.981Z","seq":17,"type":"policy","step":"s8_select","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:54.299Z","seq":18,"type":"step.ok","step":"s8_select","kind":"select","strategy":"anchor","attempts":1,"screenshot":"shots/018-s8_select.png"}
+{"t":"2026-09-08T21:20:54.439Z","seq":19,"type":"policy","step":"s9_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:54.728Z","seq":20,"type":"step.ok","step":"s9_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/020-s9_type.png"}
+{"t":"2026-09-08T21:20:54.864Z","seq":21,"type":"policy","step":"s10_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:55.164Z","seq":22,"type":"step.ok","step":"s10_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/022-s10_type.png"}
+{"t":"2026-09-08T21:20:55.301Z","seq":23,"type":"policy","step":"s11_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:55.753Z","seq":24,"type":"step.ok","step":"s11_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/024-s11_click.png"}
+{"t":"2026-09-08T21:20:55.890Z","seq":25,"type":"condition","step":"s12_click","code":"VALIDATION_ERROR","kind":"business","description":"The console rejected an input value; the caller supplied something the app will not accept."}
+{"t":"2026-09-08T21:20:55.891Z","seq":26,"type":"replay.outcome","code":"VALIDATION_ERROR","atStep":"s12_click","message":"Nickname must be at least 3 characters."}

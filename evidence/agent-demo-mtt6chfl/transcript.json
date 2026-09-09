@@ -1,0 +1,75 @@
+{
+  "question": "What is the share savings balance of member 10003, and does member 99999 exist?",
+  "model": "gpt-4.1",
+  "tools": [
+    "lookup_member_balance",
+    "open_sub_account"
+  ],
+  "transcript": [
+    {
+      "turn": 0,
+      "role": "assistant",
+      "content": null,
+      "tool_calls": [
+        {
+          "id": "call_9Bczizv8hK8kveGwonZ0dTOM",
+          "type": "function",
+          "function": {
+            "name": "lookup_member_balance",
+            "arguments": "{\"memberId\": \"10003\"}"
+          }
+        },
+        {
+          "id": "call_llVvP1nRqzfYjT2IFstuBlRs",
+          "type": "function",
+          "function": {
+            "name": "lookup_member_balance",
+            "arguments": "{\"memberId\": \"99999\"}"
+          }
+        }
+      ]
+    },
+    {
+      "turn": 0,
+      "role": "tool",
+      "name": "lookup_member_balance",
+      "args": {
+        "memberId": "10003"
+      },
+      "result": {
+        "status": "success",
+        "runId": "invoke-lookup_member_balance-20260908-212107-cbvx",
+        "driftWarnings": 0,
+        "recoveries": 0,
+        "interventions": 0,
+        "outputs": {
+          "share_savings_balance": 15987.12
+        }
+      }
+    },
+    {
+      "turn": 0,
+      "role": "tool",
+      "name": "lookup_member_balance",
+      "args": {
+        "memberId": "99999"
+      },
+      "result": {
+        "status": "outcome",
+        "runId": "invoke-lookup_member_balance-20260908-212111-xlls",
+        "driftWarnings": 0,
+        "recoveries": 0,
+        "interventions": 0,
+        "outcome": {
+          "code": "RECORD_NOT_FOUND",
+          "message": "No record found for member 99999."
+        }
+      }
+    },
+    {
+      "turn": 1,
+      "role": "assistant",
+      "content": "- The share savings balance of member 10003 is $15,987.12 (run ID: invoke-lookup_member_balance-20260908-212107-cbvx).\n- Member 99999 does not exist (run ID: invoke-lookup_member_balance-20260908-212111-xlls)."
+    }
+  ]
+}

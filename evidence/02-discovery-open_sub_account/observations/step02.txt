@@ -1,0 +1,15 @@
+STEP 2/30
+LAST ACTION RESULT: ok
+URL: http://localhost:4010/t/alpha/login
+TITLE: Hoosier Federal Credit Union - Sign On
+ELEMENTS:
+  [0] textbox "User ID" value="[secret]"
+  [1] password "Password"
+  [2] button "Sign On" label="Password"
+  [3] cell "Hoosier Federal Credit Union LegacyCore Teller Console"
+  [4] text "Hoosier Federal Credit Union"
+  [5] text "LegacyCore Teller Console"
+  [6] cell "User ID" column="Hoosier Federal Credit UnionLegacyCore Teller Console" row=[]
+  [7] cell "Password" label="User ID" column="Hoosier Federal Credit UnionLegacyCore Teller Console" row=[]
+VISIBLE TEXT (truncated):
+  Hoosier Federal Credit Union LegacyCore Teller Console User ID Password

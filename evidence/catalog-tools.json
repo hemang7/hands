@@ -1,0 +1,55 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "lookup_member_balance",
+      "description": "This capability allows you to look up a member by their member ID and retrieve the current balance of their share savings account. It automates the process of signing in, navigating to the member inquiry section, entering the member ID, and extracting the share savings balance from the member's account details. Returns: share_savings_balance (money): The current balance of the member's share savings account.. Possible business outcomes (not errors): see app profile. Risk: reversible. Status: draft.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "The unique identifier for the member whose share savings balance you want to retrieve. (pattern ^\\d{5}$)"
+          }
+        },
+        "required": [
+          "memberId"
+        ]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "open_sub_account",
+      "description": "This capability allows you to look up a member using Member Inquiry, open a new sub-account for them (without using the Transactions menu), specify the account type, nickname, and initial deposit, review and confirm the details, and then stop on the screen displaying the host confirmation number. The process ensures the sub-account is created according to the provided specifications and returns the confirmation number for reference. Returns: host_confirmation_number (string): The confirmation number displayed by the host system after successfully opening the new sub-account.. Possible business outcomes (not errors): see app profile. Risk: irreversible. Status: approved.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "description": "The unique identifier of the member for whom the new sub-account will be opened. (pattern ^\\d{5}$)"
+          },
+          "accountType": {
+            "type": "string",
+            "description": "The type of sub-account to be created (e.g., Club Savings)."
+          },
+          "nickname": {
+            "type": "string",
+            "description": "The nickname to assign to the new sub-account."
+          },
+          "deposit": {
+            "type": "number",
+            "description": "The initial deposit amount (in dollars) for the new sub-account."
+          }
+        },
+        "required": [
+          "memberId",
+          "accountType",
+          "nickname",
+          "deposit"
+        ]
+      }
+    }
+  }
+]

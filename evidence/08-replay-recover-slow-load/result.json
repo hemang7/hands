@@ -1,0 +1,101 @@
+{
+  "runId": "08-replay-recover-slow-load",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••01"
+  },
+  "startedAt": "2026-09-08T21:20:03.644Z",
+  "durationMs": 8569,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 574
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 446,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 447,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 612,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 592,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 457,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "recovered",
+      "attempts": 1,
+      "durationMs": 5039,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 271,
+      "strategyUsed": "grid",
+      "fingerprintScore": 0.8999999999999999
+    }
+  ],
+  "drift": [],
+  "recoveries": [
+    {
+      "stepId": "s6_click",
+      "code": "SLOW_LOAD",
+      "action": "waited up to 18000ms",
+      "succeeded": true
+    }
+  ],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/08-replay-recover-slow-load",
+  "status": "success",
+  "outputs": {
+    "share_savings_balance": 4812.33
+  }
+}

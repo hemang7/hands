@@ -1,0 +1,26 @@
+STEP 15/30
+LAST ACTION RESULT: extracted host_confirmation_number = "HC02375991"
+URL: http://localhost:4010/t/alpha/console
+TITLE: Hoosier Federal Credit Union - Teller Console
+FRAMES: top -> http://localhost:4010/t/alpha/console | banner -> http://localhost:4010/t/alpha/frame/banner | menu -> http://localhost:4010/t/alpha/frame/menu | main -> http://localhost:4010/t/alpha/members/•••02/subaccount/confirm
+ELEMENTS:
+  [0] link "Sign Off" frame=banner label="Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1"
+  [1] cell "Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1" frame=banner
+  [2] text "Hoosier Federal Credit Union" frame=banner
+  [3] text "LegacyCore Teller Console v7.2.1" frame=banner
+  [4] link "Home" frame=menu label="MAIN MENU"
+  [5] link "Member Inquiry" frame=menu
+  [6] link "Transactions" frame=menu
+  [7] link "Reports" frame=menu
+  [8] link "Administration" frame=menu
+  [9] cell "MAIN MENU" frame=menu
+  [10] button "Return to Member" frame=main
+  [11] cell "TRANSACTION POSTED" frame=main
+  [12] text "Sub-account S02 opened for member •••02. Host confirmation number HC02375991." frame=main
+  [13] text "S02" frame=main label="Sub-account"
+  [14] text "HC02375991" frame=main label="Host confirmation number"
+  [15] text "LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured" frame=main
+VISIBLE TEXT (truncated):
+  [frame banner] Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1 Operator: T. SMITH (TELLER) | Branch 004 | Sign Off
+  [frame menu] MAIN MENU Home Member Inquiry Transactions Reports Administration
+  [frame main] TRANSACTION POSTED Sub-account S02 opened for member •••02. Host confirmation number HC02375991. LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured

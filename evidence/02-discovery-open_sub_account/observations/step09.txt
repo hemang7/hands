@@ -1,0 +1,30 @@
+STEP 9/30
+LAST ACTION RESULT: ok
+URL: http://localhost:4010/t/alpha/console
+TITLE: Hoosier Federal Credit Union - Teller Console
+FRAMES: top -> http://localhost:4010/t/alpha/console | banner -> http://localhost:4010/t/alpha/frame/banner | menu -> http://localhost:4010/t/alpha/frame/menu | main -> http://localhost:4010/t/alpha/members/•••02/subaccount/new?
+ELEMENTS:
+  [0] link "Sign Off" frame=banner label="Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1"
+  [1] cell "Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1" frame=banner
+  [2] text "Hoosier Federal Credit Union" frame=banner
+  [3] text "LegacyCore Teller Console v7.2.1" frame=banner
+  [4] link "Home" frame=menu label="MAIN MENU"
+  [5] link "Member Inquiry" frame=menu
+  [6] link "Transactions" frame=menu
+  [7] link "Reports" frame=menu
+  [8] link "Administration" frame=menu
+  [9] cell "MAIN MENU" frame=menu
+  [10] combobox "Account Type" frame=main options=["-- select --","Share Savings","Club Savings","Money Market"]
+  [11] textbox "Nickname" frame=main
+  [12] textbox "Initial Deposit" frame=main
+  [13] button "Continue" frame=main
+  [14] button "Cancel" frame=main
+  [15] cell "NEW SUB-ACCOUNT - MEMBER •••02" frame=main
+  [16] cell "Account Type" frame=main column="NEW SUB-ACCOUNT - MEMBER •••02" row=[]
+  [17] cell "Nickname" frame=main label="Account Type" column="NEW SUB-ACCOUNT - MEMBER •••02" row=[]
+  [18] cell "Initial Deposit" frame=main label="Nickname" column="NEW SUB-ACCOUNT - MEMBER •••02" row=[]
+  [19] text "LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured" frame=main
+VISIBLE TEXT (truncated):
+  [frame banner] Hoosier Federal Credit Union LegacyCore Teller Console v7.2.1 Operator: T. SMITH (TELLER) | Branch 004 | Sign Off
+  [frame menu] MAIN MENU Home Member Inquiry Transactions Reports Administration
+  [frame main] NEW SUB-ACCOUNT - MEMBER •••02 Account Type -- select -- Share Savings Club Savings Money Market Nickname Initial Deposit (min $5.00) LegacyCore Teller Console v7.2.1 · Hoosier Federal Credit Union · Session secured

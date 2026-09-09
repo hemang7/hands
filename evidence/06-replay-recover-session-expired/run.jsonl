@@ -1,0 +1,28 @@
+{"t":"2026-09-08T21:19:51.275Z","seq":0,"type":"replay.start","capability":"lookup_member_balance","version":1,"status":"draft","tenant":"alpha","entryUrl":"http://localhost:4010/t/alpha/login","inputs":{"memberId":"10001"},"steps":8,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:19:51.404Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:51.852Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:19:51.987Z","seq":3,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:52.308Z","seq":4,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/004-s1_type.png"}
+{"t":"2026-09-08T21:19:52.439Z","seq":5,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:52.758Z","seq":6,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/006-s2_type.png"}
+{"t":"2026-09-08T21:19:52.891Z","seq":7,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:19:53.342Z","seq":8,"type":"step.ok","step":"s3_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/008-s3_click.png"}
+{"t":"2026-09-08T21:19:53.477Z","seq":9,"type":"condition","step":"s4_click","code":"SESSION_EXPIRED","kind":"recoverable","description":"Host session timed out; the console bounced to the sign-on screen."}
+{"t":"2026-09-08T21:19:53.477Z","seq":10,"type":"recovery","step":"s4_click","code":"SESSION_EXPIRED","action":"reauth+restart","via":"legacycore_sign_on"}
+{"t":"2026-09-08T21:19:53.607Z","seq":11,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:54.040Z","seq":12,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":2,"screenshot":"shots/012-s0_navigate.png"}
+{"t":"2026-09-08T21:19:54.176Z","seq":13,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:54.480Z","seq":14,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":2,"screenshot":"shots/014-s1_type.png"}
+{"t":"2026-09-08T21:19:54.612Z","seq":15,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:54.915Z","seq":16,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":2,"screenshot":"shots/016-s2_type.png"}
+{"t":"2026-09-08T21:19:55.047Z","seq":17,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:19:55.533Z","seq":18,"type":"step.ok","step":"s3_click","kind":"click","strategy":"role","attempts":2,"screenshot":"shots/018-s3_click.png"}
+{"t":"2026-09-08T21:19:55.676Z","seq":19,"type":"policy","step":"s4_click","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:56.141Z","seq":20,"type":"step.ok","step":"s4_click","kind":"click","strategy":"role","attempts":2,"screenshot":"shots/020-s4_click.png"}
+{"t":"2026-09-08T21:19:56.273Z","seq":21,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:19:56.587Z","seq":22,"type":"step.ok","step":"s5_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/022-s5_type.png"}
+{"t":"2026-09-08T21:19:56.723Z","seq":23,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:19:57.191Z","seq":24,"type":"step.ok","step":"s6_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/024-s6_click.png"}
+{"t":"2026-09-08T21:19:57.505Z","seq":25,"type":"extract","step":"s7_extract","output":"share_savings_balance","raw":"$4,812.33","parsed":4812.33,"screenshot":"shots/025-s7_extract.png"}
+{"t":"2026-09-08T21:19:57.506Z","seq":26,"type":"step.ok","step":"s7_extract","kind":"extract","strategy":"grid","attempts":1,"screenshot":"shots/025-s7_extract.png"}
+{"t":"2026-09-08T21:19:57.647Z","seq":27,"type":"replay.success","outputs":{"share_savings_balance":4812.33},"drift":0,"recoveries":1,"interventions":0}

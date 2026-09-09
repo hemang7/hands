@@ -1,0 +1,20 @@
+{"t":"2026-09-08T21:20:24.344Z","seq":0,"type":"replay.start","capability":"lookup_member_balance","version":2,"status":"draft","tenant":"beta","entryUrl":"http://localhost:4010/t/beta/login","inputs":{"memberId":"10002"},"steps":8,"outcomesKnown":["SESSION_EXPIRED","SYSTEM_NOTICE","APP_ERROR","RECORD_NOT_FOUND","PERMISSION_DENIED","VALIDATION_ERROR"]}
+{"t":"2026-09-08T21:20:24.473Z","seq":1,"type":"policy","step":"s0_navigate","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:24.930Z","seq":2,"type":"step.ok","step":"s0_navigate","kind":"navigate","attempts":1,"screenshot":"shots/002-s0_navigate.png"}
+{"t":"2026-09-08T21:20:25.064Z","seq":3,"type":"policy","step":"s1_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:25.388Z","seq":4,"type":"step.ok","step":"s1_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/004-s1_type.png"}
+{"t":"2026-09-08T21:20:25.520Z","seq":5,"type":"policy","step":"s2_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:25.854Z","seq":6,"type":"step.ok","step":"s2_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/006-s2_type.png"}
+{"t":"2026-09-08T21:20:25.983Z","seq":7,"type":"policy","step":"s3_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:26.455Z","seq":8,"type":"condition","step":"s3_click","code":"SYSTEM_NOTICE","kind":"recoverable","description":"Interstitial system notice that must be acknowledged before the console continues."}
+{"t":"2026-09-08T21:20:26.627Z","seq":9,"type":"recovery","step":"s3_click","code":"SYSTEM_NOTICE","action":"dismiss","target":"the \"Acknowledge\" button on the system notice"}
+{"t":"2026-09-08T21:20:26.761Z","seq":10,"type":"checkpoint.recheck","step":"s3_click","ok":true,"detail":"url http://localhost:4010/t/beta/console matches /t/beta/console"}
+{"t":"2026-09-08T21:20:26.900Z","seq":11,"type":"policy","step":"s4_click","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:27.389Z","seq":12,"type":"step.ok","step":"s4_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/012-s4_click.png"}
+{"t":"2026-09-08T21:20:27.527Z","seq":13,"type":"policy","step":"s5_type","risk":"safe","allowed":true,"reason":"safe action permitted"}
+{"t":"2026-09-08T21:20:27.852Z","seq":14,"type":"step.ok","step":"s5_type","kind":"type","strategy":"anchor","attempts":1,"screenshot":"shots/014-s5_type.png"}
+{"t":"2026-09-08T21:20:27.988Z","seq":15,"type":"policy","step":"s6_click","risk":"reversible","allowed":true,"reason":"reversible action permitted"}
+{"t":"2026-09-08T21:20:28.435Z","seq":16,"type":"step.ok","step":"s6_click","kind":"click","strategy":"role","attempts":1,"screenshot":"shots/016-s6_click.png"}
+{"t":"2026-09-08T21:20:28.753Z","seq":17,"type":"extract","step":"s7_extract","output":"share_savings_balance","raw":"$250.00","parsed":250,"screenshot":"shots/017-s7_extract.png"}
+{"t":"2026-09-08T21:20:28.753Z","seq":18,"type":"step.ok","step":"s7_extract","kind":"extract","strategy":"grid","attempts":1,"screenshot":"shots/017-s7_extract.png"}
+{"t":"2026-09-08T21:20:28.894Z","seq":19,"type":"replay.success","outputs":{"share_savings_balance":250},"drift":0,"recoveries":1,"interventions":0}

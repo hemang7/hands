@@ -1,0 +1,105 @@
+{
+  "runId": "06-replay-recover-session-expired",
+  "capability": {
+    "id": "lookup_member_balance",
+    "version": 1,
+    "status": "draft"
+  },
+  "tenant": "alpha",
+  "inputs": {
+    "memberId": "•••01"
+  },
+  "startedAt": "2026-09-08T21:19:51.275Z",
+  "durationMs": 6372,
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "status": "ok",
+      "attempts": 2,
+      "durationMs": 1139,
+      "note": "rerun after re-auth"
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 2,
+      "durationMs": 895,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1,
+      "note": "rerun after re-auth"
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 2,
+      "durationMs": 884,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1,
+      "note": "rerun after re-auth"
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 2,
+      "durationMs": 1201,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999,
+      "note": "rerun after re-auth"
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 2,
+      "durationMs": 607,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 446,
+      "strategyUsed": "anchor",
+      "fingerprintScore": 1
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 603,
+      "strategyUsed": "role",
+      "fingerprintScore": 0.8999999999999999
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "status": "ok",
+      "attempts": 1,
+      "durationMs": 315,
+      "strategyUsed": "grid",
+      "fingerprintScore": 0.8999999999999999
+    }
+  ],
+  "drift": [],
+  "recoveries": [
+    {
+      "stepId": "s4_click",
+      "code": "SESSION_EXPIRED",
+      "action": "re-authenticate via legacycore_sign_on then restart",
+      "succeeded": true
+    }
+  ],
+  "interventions": [],
+  "evidenceDir": "/Users/hemang/Downloads/hands/runs/06-replay-recover-session-expired",
+  "status": "success",
+  "outputs": {
+    "share_savings_balance": 4812.33
+  }
+}

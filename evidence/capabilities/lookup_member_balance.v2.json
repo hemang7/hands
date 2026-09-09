@@ -1,0 +1,645 @@
+{
+  "schemaVersion": "1.0",
+  "id": "lookup_member_balance",
+  "version": 2,
+  "status": "draft",
+  "name": "Get Member Share Savings Balance",
+  "description": "This capability allows you to look up a member by their member ID and retrieve the current balance of their share savings account. It automates the process of signing in, navigating to the member inquiry section, entering the member ID, and extracting the share savings balance from the member's account details.",
+  "app": {
+    "profile": "legacycore-teller",
+    "surface": "web",
+    "entryUrl": "http://localhost:4010/t/alpha/login"
+  },
+  "inputs": {
+    "memberId": {
+      "type": "string",
+      "description": "The unique identifier for the member whose share savings balance you want to retrieve.",
+      "required": true,
+      "pattern": "^\\d{5}$",
+      "sensitivity": "pii"
+    }
+  },
+  "outputs": {
+    "share_savings_balance": {
+      "type": "money",
+      "description": "The current balance of the member's share savings account.",
+      "sensitivity": "none",
+      "fromStep": "s7_extract"
+    }
+  },
+  "outcomes": [],
+  "steps": [
+    {
+      "id": "s0_navigate",
+      "kind": "navigate",
+      "description": "Open the application entry point",
+      "url": "http://localhost:4010/t/alpha/login",
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/login"
+          }
+        ]
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s1_type",
+      "kind": "type",
+      "description": "Entering the username to sign on.",
+      "target": {
+        "description": "the \"User ID\" text box",
+        "frame": {
+          "urlPattern": "/t/alpha/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "User ID",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "uid",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "User ID",
+          "attrName": "uid",
+          "type": "text",
+          "anchor": "User ID"
+        }
+      },
+      "value": {
+        "kind": "secret",
+        "ref": "LEGACYCORE_USER"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s2_type",
+      "kind": "type",
+      "description": "Entering the password to sign on.",
+      "target": {
+        "description": "the \"Password\" password",
+        "frame": {
+          "urlPattern": "/t/alpha/login"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Password",
+            "role": "password"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "pwd",
+            "type": "password"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "password",
+          "name": "Password",
+          "attrName": "pwd",
+          "type": "password",
+          "anchor": "Password"
+        }
+      },
+      "value": {
+        "kind": "secret",
+        "ref": "LEGACYCORE_PASSWORD"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s3_click",
+      "kind": "click",
+      "description": "Clicking the 'Sign On' button to proceed after entering credentials.",
+      "target": {
+        "description": "the \"Sign On\" button",
+        "frame": {
+          "urlPattern": "/t/alpha/login"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Sign On"
+          },
+          {
+            "kind": "anchor",
+            "anchor": "Password",
+            "role": "button"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Sign On"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > center > table > tbody > tr:nth-of-type(4) > td > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Sign On",
+          "type": "submit",
+          "anchor": "Password"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/console"
+          }
+        ]
+      },
+      "risk": "reversible"
+    },
+    {
+      "id": "s4_click",
+      "kind": "click",
+      "description": "Clicking 'Member Inquiry' to look up a member as required by the goal.",
+      "target": {
+        "description": "the \"Member Inquiry\" link in frame \"menu\"",
+        "frame": {
+          "name": "menu",
+          "urlPattern": "/t/alpha/frame/menu"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "link",
+            "name": "Member Inquiry"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr:nth-of-type(3) > td > font > a"
+          }
+        ],
+        "fingerprint": {
+          "tag": "a",
+          "role": "link",
+          "name": "Member Inquiry"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members"
+          }
+        ]
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s5_type",
+      "kind": "type",
+      "description": "Entering the memberId to look up the member as required by the goal.",
+      "target": {
+        "description": "the \"Member Number\" text box in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members"
+        },
+        "strategies": [
+          {
+            "kind": "anchor",
+            "anchor": "Member Number",
+            "role": "textbox"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "name": "txt1",
+            "type": "text"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "textbox",
+          "name": "Member Number",
+          "attrName": "txt1",
+          "type": "text",
+          "anchor": "Member Number"
+        }
+      },
+      "value": {
+        "kind": "param",
+        "name": "memberId"
+      },
+      "risk": "safe"
+    },
+    {
+      "id": "s6_click",
+      "kind": "click",
+      "description": "Clicking the 'Inquire' button to look up the member details after entering the memberId.",
+      "target": {
+        "description": "the \"Inquire\" button in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members"
+        },
+        "strategies": [
+          {
+            "kind": "role",
+            "role": "button",
+            "name": "Inquire"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit",
+            "value": "Inquire"
+          },
+          {
+            "kind": "attr",
+            "tag": "input",
+            "type": "submit"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input:nth-of-type(1)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "input",
+          "role": "button",
+          "name": "Inquire",
+          "type": "submit"
+        }
+      },
+      "expect": {
+        "all": [
+          {
+            "urlMatches": "/t/alpha/members/:id"
+          }
+        ]
+      },
+      "risk": "reversible"
+    },
+    {
+      "id": "s7_extract",
+      "kind": "extract",
+      "description": "This cell contains the current balance for the Share Savings account, as required by the goal.",
+      "target": {
+        "description": "the \"Current Balance\" cell of the \"Share Savings\" row in frame \"main\"",
+        "frame": {
+          "name": "main",
+          "urlPattern": "/t/alpha/members/:id"
+        },
+        "strategies": [
+          {
+            "kind": "grid",
+            "row": "Share Savings",
+            "column": "Current Balance"
+          },
+          {
+            "kind": "grid",
+            "row": "PRIMARY SAVINGS",
+            "column": "Current Balance"
+          },
+          {
+            "kind": "grid",
+            "row": "S01",
+            "column": "Current Balance"
+          },
+          {
+            "kind": "anchor",
+            "anchor": "PRIMARY SAVINGS",
+            "role": "cell"
+          },
+          {
+            "kind": "css",
+            "selector": "body > table > tbody > tr > td > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(4)"
+          }
+        ],
+        "fingerprint": {
+          "tag": "td",
+          "role": "cell",
+          "name": "",
+          "anchor": "PRIMARY SAVINGS"
+        }
+      },
+      "output": "share_savings_balance",
+      "parse": "money",
+      "risk": "safe"
+    }
+  ],
+  "success": {
+    "all": [
+      {
+        "urlMatches": "/t/alpha/members/:id"
+      },
+      {
+        "textPresent": "MEMBER DETAIL"
+      }
+    ]
+  },
+  "policy": {
+    "allowlist": {
+      "origins": [
+        "http://localhost:4010"
+      ],
+      "routes": [
+        "/t/alpha/console",
+        "/t/alpha/frame/banner",
+        "/t/alpha/frame/menu",
+        "/t/alpha/home",
+        "/t/alpha/login",
+        "/t/alpha/members",
+        "/t/alpha/members/:id"
+      ],
+      "actions": [
+        "navigate",
+        "click",
+        "type",
+        "select",
+        "extract",
+        "assert",
+        "dismiss"
+      ]
+    },
+    "maxRisk": "reversible"
+  },
+  "provenance": {
+    "recordedAt": "2026-09-08T21:20:23.630Z",
+    "recordedBy": "derived",
+    "model": "gpt-4.1",
+    "discoveryRunId": "01-discovery-lookup_member_balance",
+    "goal": "Look up member {memberId} and read their current share savings balance.",
+    "tenant": "alpha",
+    "humanInterventions": 0
+  },
+  "tenants": {
+    "beta": {
+      "steps": {
+        "s1_type": {
+          "target": {
+            "description": "the \"Operator ID\" text box",
+            "frame": {
+              "urlPattern": "/t/beta/login"
+            },
+            "strategies": [
+              {
+                "kind": "anchor",
+                "anchor": "Operator ID",
+                "role": "textbox"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "name": "uid",
+                "type": "text"
+              },
+              {
+                "kind": "css",
+                "selector": "body > center > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+              }
+            ],
+            "fingerprint": {
+              "tag": "input",
+              "role": "textbox",
+              "name": "Operator ID",
+              "attrName": "uid",
+              "type": "text",
+              "anchor": "Operator ID"
+            }
+          }
+        },
+        "s2_type": {
+          "target": {
+            "description": "the \"Passcode\" password",
+            "frame": {
+              "urlPattern": "/t/beta/login"
+            },
+            "strategies": [
+              {
+                "kind": "anchor",
+                "anchor": "Passcode",
+                "role": "password"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "name": "pwd",
+                "type": "password"
+              },
+              {
+                "kind": "css",
+                "selector": "body > center > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input"
+              }
+            ],
+            "fingerprint": {
+              "tag": "input",
+              "role": "password",
+              "name": "Passcode",
+              "attrName": "pwd",
+              "type": "password",
+              "anchor": "Passcode"
+            }
+          }
+        },
+        "s3_click": {
+          "target": {
+            "description": "the \"Log In\" button",
+            "frame": {
+              "urlPattern": "/t/beta/login"
+            },
+            "strategies": [
+              {
+                "kind": "role",
+                "role": "button",
+                "name": "Log In"
+              },
+              {
+                "kind": "anchor",
+                "anchor": "Passcode",
+                "role": "button"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "type": "submit",
+                "value": "Log In"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "type": "submit"
+              },
+              {
+                "kind": "css",
+                "selector": "body > center > table > tbody > tr:nth-of-type(4) > td > input"
+              }
+            ],
+            "fingerprint": {
+              "tag": "input",
+              "role": "button",
+              "name": "Log In",
+              "type": "submit",
+              "anchor": "Passcode"
+            }
+          }
+        },
+        "s5_type": {
+          "target": {
+            "description": "the \"Member No.\" text box in frame \"content\"",
+            "frame": {
+              "name": "content",
+              "urlPattern": "/t/beta/members"
+            },
+            "strategies": [
+              {
+                "kind": "anchor",
+                "anchor": "Member No.",
+                "role": "textbox"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "name": "txt1",
+                "type": "text"
+              },
+              {
+                "kind": "css",
+                "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > input"
+              }
+            ],
+            "fingerprint": {
+              "tag": "input",
+              "role": "textbox",
+              "name": "Member No.",
+              "attrName": "txt1",
+              "type": "text",
+              "anchor": "Member No."
+            }
+          }
+        },
+        "s6_click": {
+          "target": {
+            "description": "the \"Search\" button in frame \"content\"",
+            "frame": {
+              "name": "content",
+              "urlPattern": "/t/beta/members"
+            },
+            "strategies": [
+              {
+                "kind": "role",
+                "role": "button",
+                "name": "Search"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "type": "submit",
+                "value": "Search"
+              },
+              {
+                "kind": "attr",
+                "tag": "input",
+                "type": "submit"
+              },
+              {
+                "kind": "css",
+                "selector": "body > table > tbody > tr > td > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input:nth-of-type(1)"
+              }
+            ],
+            "fingerprint": {
+              "tag": "input",
+              "role": "button",
+              "name": "Search",
+              "type": "submit"
+            }
+          }
+        },
+        "s7_extract": {
+          "target": {
+            "description": "the \"Ledger Balance\" cell of the \"Share Savings\" row in frame \"content\"",
+            "frame": {
+              "name": "content",
+              "urlPattern": "/t/beta/members/:id"
+            },
+            "strategies": [
+              {
+                "kind": "grid",
+                "row": "Share Savings",
+                "column": "Ledger Balance"
+              },
+              {
+                "kind": "grid",
+                "row": "PRIMARY SAVINGS",
+                "column": "Ledger Balance"
+              },
+              {
+                "kind": "grid",
+                "row": "S01",
+                "column": "Ledger Balance"
+              },
+              {
+                "kind": "anchor",
+                "anchor": "PRIMARY SAVINGS",
+                "role": "cell"
+              },
+              {
+                "kind": "css",
+                "selector": "body > table > tbody > tr > td > table:nth-of-type(2) > tbody > tr:nth-of-type(2) > td:nth-of-type(4)"
+              }
+            ],
+            "fingerprint": {
+              "tag": "td",
+              "role": "cell",
+              "name": "",
+              "anchor": "PRIMARY SAVINGS"
+            }
+          }
+        },
+        "s4_click": {
+          "target": {
+            "description": "the \"Customer Lookup\" link (from operator scripted.operator's action)",
+            "frame": {},
+            "strategies": [
+              {
+                "kind": "role",
+                "role": "link",
+                "name": "Customer Lookup"
+              }
+            ],
+            "fingerprint": {
+              "tag": "a",
+              "role": "link",
+              "name": "Customer Lookup"
+            }
+          }
+        }
+      },
+      "notes": "s1_type: primary \"anchor\" failed on beta; using the control matched via \"attr\" (the \"Operator ID\" text box) as this tenant's target\ns2_type: primary \"anchor\" failed on beta; using the control matched via \"attr\" (the \"Passcode\" password) as this tenant's target\ns3_click: primary \"role\" failed on beta; using the control matched via \"attr\" (the \"Log In\" button) as this tenant's target\ns5_type: primary \"anchor\" failed on beta; using the control matched via \"attr\" (the \"Member No.\" text box in frame \"content\") as this tenant's target\ns6_click: primary \"role\" failed on beta; using the control matched via \"attr\" (the \"Search\" button in frame \"content\") as this tenant's target\ns7_extract: primary \"grid\" failed on beta; using the control matched via \"anchor\" (the \"Ledger Balance\" cell of the \"Share Savings\" row in frame \"content\") as this tenant's target\ns4_click: operator scripted.operator clicked a \"Customer Lookup\" during handoff (\"Opened \"Customer Lookup\" from the menu (this tenant renamed Member Inquiry). Automation can continue from the next step.\"); proposing role=link name=\"Customer Lookup\""
+    }
+  }
+}
