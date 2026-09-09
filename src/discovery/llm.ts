@@ -44,6 +44,9 @@ export class OpenAILLM implements LLM {
       temperature: 0,
       messages,
       tools: tools.map((t) => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } })),
+      // tool_choice: 'required' prevents the model from replying in prose instead of calling a
+      // tool. A prose reply cannot be parsed into an action and would just waste a turn; the agent
+      // loop enforces this by returning an error to the model when no tool call is present.
       tool_choice: opts.forceTool === false ? 'auto' : 'required',
       parallel_tool_calls: false,
     });

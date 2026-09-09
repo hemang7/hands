@@ -72,6 +72,9 @@ export class DiscoveryAgent {
       this.evidence.log('observe', { step, url: obs.url, elements: obs.elements.length, detected, dialogs: obs.dialogs, screenshot: shot });
       this.evidence.writeText(`observations/step${String(step).padStart(2, '0')}.txt`, rendered);
 
+      // The observation is rendered as structured text (role, name, anchor, grid context) rather
+      // than a screenshot because text is cheaper per token, deterministic across runs, and works
+      // with non-vision models. A screenshot would also expose raw PII before the redactor runs.
       const messages: LLMMessage[] = [
         { role: 'system', content: sys },
         ...(this.history.length ? [{ role: 'user' as const, content: 'HISTORY OF THIS RUN SO FAR:\n' + this.history.map((h, i) => `${i + 1}. ${h}`).join('\n') }] : []),

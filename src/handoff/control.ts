@@ -83,7 +83,12 @@ export class SessionController extends EventEmitter {
     return this.pending?.req ?? null;
   }
 
-  /** Park automation, publish the request, and wait for a human to resolve it (or time out). */
+  /** Park automation, publish the request, and wait for a human to resolve it (or time out).
+   *
+   * The promise-based design lets the automation thread block here without busy-waiting or
+   * polling: it simply awaits the resolution that the human (or a timeout) will fulfil.
+   * This keeps the call-stack intact so the engine can resume exactly where it left off.
+   */
   async requestIntervention(partial: Omit<InterventionRequest, 'id' | 'createdAt' | 'status'>): Promise<Resolution> {
     if (this.pending) throw new Error('an intervention is already pending');
     const req: InterventionRequest = { ...partial, id: `int-${Date.now().toString(36)}`, createdAt: new Date().toISOString(), status: 'open' };
@@ -104,7 +109,12 @@ export class SessionController extends EventEmitter {
     return r;
   }
 
-  /** A human takes the live session. Automation is already parked; we start capturing their actions. */
+  /** A human takes the live session. Automation is already parked; we start capturing their actions.
+   *
+   * Capturing human actions during the intervention (via startHumanCapture) is what makes
+   * learn-overrides possible: the recorded clicks and types become the training signal for
+   * generating tenant-specific step patches without running another discovery session.
+   */
   async takeControl(operator: string, interventionId?: string): Promise<InterventionRequest> {
     const p = this.pending;
     if (!p) throw new Error('no intervention is pending');

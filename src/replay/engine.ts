@@ -121,6 +121,9 @@ export class ReplayEngine {
       }
 
       // ---- 2. resolve target ----
+      // The locator ladder runs most-specific first (role+name → anchor → grid → css path).
+      // Ordering matters: a match on a more-specific strategy means the page looks as recorded;
+      // falling back to a generic css path is a drift signal worth logging even if it still works.
       let resolved: Resolved | null = null;
       if (step.target) {
         resolved = resolveTarget(step.target, obs);
@@ -292,7 +295,12 @@ export class ReplayEngine {
 
   // ---- helpers ----
 
-  /** Poll for a checkpoint; stop early if a known condition shows up instead (no point waiting out the clock). */
+  /** Poll for a checkpoint; stop early if a known condition shows up instead (no point waiting out the clock).
+   *
+   * Polling rather than a one-shot assertion is intentional: legacy apps often update the DOM in
+   * multiple repaints after a form submit (status bar → content area → title), so a single
+   * synchronous check races against an unpredictable render pipeline.
+   */
   private async waitFor(cp: Capability['success'], timeoutMs: number, outcomes: OutcomeSpec[] = []): Promise<{ ok: boolean; detail: string; obs: Observation }> {
     const start = Date.now();
     let obs = await this.surface.observe();
@@ -354,6 +362,9 @@ export class ReplayEngine {
         recoveries.push({ stepId: step.id, code: cond.code, action: `re-authenticate via ${rec.capability} then restart`, succeeded: true });
         this.evidence.log('recovery', { step: step.id, code: cond.code, action: 'reauth+restart', via: rec.capability });
         for (const r of reports) if (r.status !== 'not_run') r.note = (r.note ? r.note + '; ' : '') + 'rerun after re-auth';
+        // A full restart rather than a retry of the failed step is correct here: the session
+        // expiry may have lost in-flight state (e.g. the page we navigated to is gone), so
+        // re-executing just the one step would land on an unpredictable screen.
         return { restart: true };
       }
       case 'retry': {
