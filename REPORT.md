@@ -76,7 +76,11 @@ Limits, stated plainly: risk classification is a regex over control names plus t
 
 ## 7. Cuts
 
+### Out of scope
+
 Left out on purpose: a real operator console with a live session view; desktop and screenshot surfaces (interface and seam only); a stability score from N replays; bounded LLM recovery of a single failed step; queueing, workers, tenancy plumbing; a store beyond JSON files; visual fallbacks on the ladder. The scripted decider is not a product feature, it is the way the pipeline runs without a key and the way the end-to-end tests stay cheap.
+
+### Known limitations
 
 Known rough edges: `anchor` picks the nearest label cell, which on a dense grid can be the previous data cell rather than the header (the `grid` rung exists for that reason, and `learn-overrides` repairs the rest); post-conditions are route based, so a step whose only effect is client side records no checkpoint; re-auth restarts the whole capability rather than resuming at the failed step, which is safe but slow for long flows.
 
