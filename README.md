@@ -19,6 +19,34 @@ goal ──▶ discovery (LLM) ──▶ capability.json ──▶ replay (no LL
                                     └── learn-overrides ◀┘ (drift + what the operator did on another tenant)
 ```
 
+```mermaid
+flowchart LR
+    Goal["🎯 Goal + Inputs"]
+    Discovery["🤖 Discovery\n(LLM agent loop)"]
+    Artifact["📋 Capability\nArtifact (.json)"]
+    Replay["⚙️ Replay\n(deterministic)"]
+    Result["📊 Result"]
+
+    Goal --> Discovery
+    Discovery --> Artifact
+    Artifact --> Replay
+    Replay --> Result
+
+    Policy["🛡️ Policy Engine"]
+    Handoff["👤 Human Handoff"]
+    Overrides["🔄 Learn\nOverrides"]
+
+    Policy -.->|"guards every action"| Discovery
+    Policy -.->|"guards every action"| Replay
+    Replay -.->|"when stuck"| Handoff
+    Handoff -.->|"operator actions"| Overrides
+    Overrides -.->|"patches"| Artifact
+
+    style Goal fill:#f9f,stroke:#333
+    style Artifact fill:#ff9,stroke:#333
+    style Result fill:#9f9,stroke:#333
+```
+
 <details>
 <summary>Sample CLI output (offline demo)</summary>
 
