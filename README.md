@@ -53,7 +53,24 @@ Configuration is all environment variables (see `.env.example`):
 | `LEGACYCORE_USER`, `LEGACYCORE_PASSWORD` | any run that signs on | `teller1` / `teller1-pass` for the mock app. Referenced from artifacts by env var *name* only. |
 | `HANDS_CHROMIUM_PATH` | optional | use a system Chromium instead of the Playwright download |
 
-Load `.env` however you like (`set -a; source .env; set +a`, or `direnv`).
+Load `.env` however you like (`set -a; source .env; set +a`, or `direnv`). The CLI also
+auto-loads a `.env` file from the project root at start-up, so a bare `npm run hands` works once
+the file exists.
+
+## Quick start (Docker)
+
+No local Node, Playwright, or Chromium installation needed:
+
+```bash
+docker compose up
+```
+
+This runs the full offline demo — scripted decider, all 17 replay scenarios, catalog — and prints
+`evidence written to runs/evidence-offline/` when done. To run with a real OpenAI model instead:
+
+```bash
+OPENAI_API_KEY=sk-... docker compose run hands npm run evidence
+```
 
 ## Demo path
 

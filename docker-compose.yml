@@ -1,0 +1,13 @@
+# Offline demo (scripted decider, no API key):
+#   docker compose up
+#
+# Real model-driven runs (needs an OpenAI key):
+#   OPENAI_API_KEY=sk-... docker compose run hands npm run evidence
+
+services:
+  hands:
+    build: .
+    environment:
+      # Pass your real key to enable model-driven discovery and the agent demo.
+      # Left empty → CLI defaults to --llm scripted (offline mode).
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
