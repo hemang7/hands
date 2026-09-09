@@ -18,24 +18,24 @@ Each run directory contains:
 
 ## Map of runs
 
-| Run | Shows |
-|---|---|
-| `01-discovery-lookup_member_balance` | LLM drives the legacy UI to a goal; artifact recorded (read-only flow) |
-| `02-discovery-open_sub_account` | LLM drives a multi-field form to a review screen and an irreversible commit, with a native confirm dialog; both consents required |
-| `03-replay-success` | same artifact, different member, no model, typed outputs |
-| `04-replay-outcome-not-found` | `RECORD_NOT_FOUND` returned as a **business outcome**, exit code 0 |
-| `05-replay-invalid-input` | contract violation rejected before the browser is touched |
-| `06-replay-recover-session-expired` | session expiry mid-flow: re-authenticate and restart, still succeeds |
-| `07-replay-recover-interstitial` | system notice interstitial dismissed, step re-verified rather than re-submitted |
-| `08-replay-recover-slow-load` | slow host: waits longer, records the recovery |
-| `09-replay-hard-app-error` | ORA-style application error: hard failure with screenshot + DOM snapshot |
-| `10-replay-tenant-beta-handoff` | second institution on the same vendor product: six drift warnings, one recovery, one human taking the live session and handing back |
-| `11` (`capabilities/lookup_member_balance.v2.json`) | tenant overrides learned from run 10's drift and the operator's recorded actions |
-| `12-replay-tenant-beta-with-overrides` | same flow on tenant beta with v2: clean, no drift, no intervention |
-| `13-replay-escalated-abort` | operator reviews and aborts: `status: "escalated"`, exit code 3 |
-| `14-replay-irreversible-needs-approval` | draft artifact + irreversible step: engine refuses, escalates, operator posts it themselves and hands back |
-| `15-replay-outcome-permission-denied` | privilege denial as a business outcome (note the operator id is redacted in the message) |
-| `16-replay-outcome-validation-error` | the app's own validation message surfaced as a business outcome |
-| `17-replay-irreversible-approved-confirmed` | approved artifact + `--confirm`: the commit runs unattended |
-| `catalog.txt`, `catalog-tools.json` | capabilities as an agent-facing tool surface |
-| `agent-demo.txt`, `agent-demo-*/transcript.json` | an LLM answering a question by invoking capabilities, never by driving the UI |
+| Run | Shows | Key source |
+|---|---|---|
+| `01-discovery-lookup_member_balance` | LLM drives the legacy UI to a goal; artifact recorded (read-only flow) | [`src/discovery/agent.ts`](../src/discovery/agent.ts) |
+| `02-discovery-open_sub_account` | LLM drives a multi-field form to a review screen and an irreversible commit, with a native confirm dialog; both consents required | [`src/discovery/recorder.ts`](../src/discovery/recorder.ts) |
+| `03-replay-success` | same artifact, different member, no model, typed outputs | [`src/replay/engine.ts`](../src/replay/engine.ts) |
+| `04-replay-outcome-not-found` | `RECORD_NOT_FOUND` returned as a **business outcome**, exit code 0 | [`src/artifact/conditions.ts`](../src/artifact/conditions.ts) |
+| `05-replay-invalid-input` | contract violation rejected before the browser is touched | [`src/replay/engine.ts`](../src/replay/engine.ts) (`validateInputs`) |
+| `06-replay-recover-session-expired` | session expiry mid-flow: re-authenticate and restart, still succeeds | [`src/artifact/conditions.ts`](../src/artifact/conditions.ts) |
+| `07-replay-recover-interstitial` | system notice interstitial dismissed, step re-verified rather than re-submitted | [`src/artifact/conditions.ts`](../src/artifact/conditions.ts) |
+| `08-replay-recover-slow-load` | slow host: waits longer, records the recovery | [`src/replay/engine.ts`](../src/replay/engine.ts) |
+| `09-replay-hard-app-error` | ORA-style application error: hard failure with screenshot + DOM snapshot | [`src/evidence/evidence.ts`](../src/evidence/evidence.ts) |
+| `10-replay-tenant-beta-handoff` | second institution on the same vendor product: six drift warnings, one recovery, one human taking the live session and handing back | [`src/handoff/control.ts`](../src/handoff/control.ts) |
+| `11` (`capabilities/lookup_member_balance.v2.json`) | tenant overrides learned from run 10's drift and the operator's recorded actions | [`src/artifact/overrides.ts`](../src/artifact/overrides.ts) |
+| `12-replay-tenant-beta-with-overrides` | same flow on tenant beta with v2: clean, no drift, no intervention | [`src/artifact/overrides.ts`](../src/artifact/overrides.ts) |
+| `13-replay-escalated-abort` | operator reviews and aborts: `status: "escalated"`, exit code 3 | [`src/handoff/control.ts`](../src/handoff/control.ts) |
+| `14-replay-irreversible-needs-approval` | draft artifact + irreversible step: engine refuses, escalates, operator posts it themselves and hands back | [`src/policy/policy.ts`](../src/policy/policy.ts) |
+| `15-replay-outcome-permission-denied` | privilege denial as a business outcome (note the operator id is redacted in the message) | [`src/artifact/conditions.ts`](../src/artifact/conditions.ts) |
+| `16-replay-outcome-validation-error` | the app's own validation message surfaced as a business outcome | [`src/artifact/conditions.ts`](../src/artifact/conditions.ts) |
+| `17-replay-irreversible-approved-confirmed` | approved artifact + `--confirm`: the commit runs unattended | [`src/policy/policy.ts`](../src/policy/policy.ts) |
+| `catalog.txt`, `catalog-tools.json` | capabilities as an agent-facing tool surface | [`src/catalog/catalog.ts`](../src/catalog/catalog.ts) |
+| `agent-demo.txt`, `agent-demo-*/transcript.json` | an LLM answering a question by invoking capabilities, never by driving the UI | [`src/catalog/agent-demo.ts`](../src/catalog/agent-demo.ts) |
