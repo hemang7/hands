@@ -102,6 +102,22 @@ describe('end to end on the hostile target app', () => {
     expect(r.drift).toEqual([]);
   }, 60_000);
 
+  it('replays without any LLM — model client throws if called', async () => {
+    // The OpenAI SDK uses globalThis.fetch for every API call. Replacing it with
+    // a function that throws means any accidental LLM call from the replay path
+    // will surface immediately and fail this test. Playwright uses its own CDP
+    // transport, not globalThis.fetch, so page automation is unaffected.
+    const realFetch = globalThis.fetch;
+    globalThis.fetch = (() => { throw new Error('LLM MUST NOT BE CALLED DURING REPLAY'); }) as typeof fetch;
+    try {
+      const r = await replay(cap, { memberId: '10004' });
+      expect(r.status).toBe('success');
+      if (r.status === 'success') expect(typeof r.outputs.savings_balance).toBe('number');
+    } finally {
+      globalThis.fetch = realFetch;
+    }
+  }, 60_000);
+
   it('reports a business outcome (not a failure) for an unknown member', async () => {
     const r = await replay(cap, { memberId: '99999' });
     expect(r.status).toBe('outcome');
