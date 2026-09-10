@@ -110,7 +110,7 @@ describe('end to end on the hostile target app', () => {
     const realFetch = globalThis.fetch;
     globalThis.fetch = (() => { throw new Error('LLM MUST NOT BE CALLED DURING REPLAY'); }) as typeof fetch;
     try {
-      const r = await replay(cap, { memberId: '10004' });
+      const r = await replay(cap, { memberId: '10002' });
       expect(r.status).toBe('success');
       if (r.status === 'success') expect(typeof r.outputs.savings_balance).toBe('number');
     } finally {
